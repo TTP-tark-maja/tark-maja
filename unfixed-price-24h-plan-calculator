@@ -1,0 +1,31 @@
+how_many_minutes_in = 180
+how_many_minutes_out = 60
+
+how_many_minutes_in_at_once = 20
+how_many_minutes_out_at_once = 30
+
+which_timeperiod_in_starts = 1528460983
+which_timeperiod_in_ends = 1528460583
+
+which_timeperiod_out_starts = 2018-06-08 18:00:00
+which_timeperiod_out_ends = 2018-06-08 20:00:00
+
+max_electicity_consumption = 10
+min_electicity_consumption = 2
+
+appliance = 850
+
+def 24h_plan_calculator_unfixedprice(how_many_minutes_in, how_many_minutes_out, how_many_minutes_in_at_once, how_many_minutes_out_at_once,
+                                     which_timeperiod_in_starts, which_timeperiod_in_ends, which_timeperiod_out_starts, which_timeperiod_out_ends,
+                                     max_electicity_consumption, min_electicity_consumption, appliance):
+    
+    
+
+
+
+def calculate_capacity(applience, workinghours):
+    return workinghours*(applience/1000)
+
+def calculate_hours(starttime, endtime):
+    
+     
