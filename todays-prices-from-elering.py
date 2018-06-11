@@ -10,8 +10,10 @@ with urllib.request.urlopen("https://dashboard.elering.ee/api/nps/price?start=&e
     eesti = data['ee']
     #kirjutab andmed faili    
     with open('todaydata.txt', 'w') as outfile:
-        
-        for i in range (0, 12) :
+
+        now = datetime.datetime.now()
+
+        for i in range (0, now.hour) :
             eestiajad =(eesti[i])
             kellaaeg = (eestiajad['timestamp'])
             price = (eestiajad['price'])
@@ -19,4 +21,3 @@ with urllib.request.urlopen("https://dashboard.elering.ee/api/nps/price?start=&e
             json.dump(price, outfile)
             json.dump(time, outfile)
             outfile.write('\n')
-
