@@ -16,8 +16,20 @@ how_many_minutes_out = 60
 how_many_minutes_in_at_once = 20
 how_many_minutes_out_at_once = 30
 
-which_timeperiod_in_starts = datetime(2015, 9, 12, 10, 9, 45)
-which_timeperiod_in_ends = datetime(2015, 9, 12, 12, 12, 10)
+which_timeperiod_in_starts1 = datetime(2015, 9, 12, 10, 9, 45)
+which_timeperiod_in_ends1 = datetime(2015, 9, 12, 8, 12, 10)
+
+which_timeperiod_in_starts2 = datetime(2015, 9, 12, 13, 9, 45)
+which_timeperiod_in_ends2 = datetime(2015, 9, 12, 14, 12, 10)
+
+which_timeperiod_in_starts3 = datetime(2015, 9, 12, 13, 9, 45)
+which_timeperiod_in_ends3 = datetime(2015, 9, 12, 13, 9, 45)
+
+which_timeperiod_in_starts4 = datetime(2015, 9, 12, 15, 9, 45)
+which_timeperiod_in_ends4 = datetime(2015, 9, 12, 16, 12, 10)
+
+which_timeperiod_out_starts = datetime(2015, 9, 12, 17, 9, 45)
+which_timeperiod_out_ends = datetime(2015, 9, 12, 19, 9, 45)
 
 which_timeperiod_out_starts = '2018-06-08 18:00:00'
 which_timeperiod_out_ends = '2018-06-08 20:00:00'
@@ -25,14 +37,9 @@ which_timeperiod_out_ends = '2018-06-08 20:00:00'
 max_electicity_consumption = 10
 min_electicity_consumption = 2
 
-timeDifference1 = 0
-timeDifference2 = 0
-timeDifference3 = 0
-timeDifference4 = 0
-
 appliance = 850
 
-conditions = (how_many_minutes_in, how_many_minutes_out, how_many_minutes_in_at_once, how_many_minutes_out_at_once, which_timeperiod_in_starts, which_timeperiod_in_ends, which_timeperiod_out_starts, which_timeperiod_out_ends, max_electicity_consumption, min_electicity_consumption, appliance)
+conditions = (how_many_minutes_in, how_many_minutes_out, how_many_minutes_in_at_once, how_many_minutes_out_at_once, which_timeperiod_in_starts1, which_timeperiod_in_ends1, which_timeperiod_out_starts, which_timeperiod_out_ends, max_electicity_consumption, min_electicity_consumption, appliance)
 
 def convert_Min_To_Hour(minutes):
     return minutes/60
@@ -70,7 +77,34 @@ def check_Amount_Of_Hours_Working(minutesWorking, minutesNotWorking, timeDiffere
     else:
         print(totalWorkingTime)
     
-        
+def check_capacity(appliance, max_capacity, min_capacity, time1start, time1end, time2start, time2end, time3start, time3end, time4start, time4end):
+    time1 = calculate_timedifference_in_hours(time1start, time1end)
+    time2 = calculate_timedifference_in_hours(time2start, time2end)
+    time3 = calculate_timedifference_in_hours(time3start, time3end)
+    time4 = calculate_timedifference_in_hours(time4start, time4end)
+    timetogether = time1 + time2 + time3 + time4
+    print('togther')
+    print(timetogether)
+    print('capa')
+    capacity = calculate_capacity(appliance, timetogether)
+    print(capacity)
+    maxcapacity = calculate_capacity(appliance, 24)
+    if(capacity>max_capacity):
+        print('Sisestatud ajad ületavad sisestatud maksimaalse elektrimahu')
+    if(maxcapacity<min_capacity):
+        print('Sisestatud minimaalset elektrimahtu ei ole sellel seadel võimalik täita') 
+    else:
+        missing_capacity = min_capacity - capacity
+        print('missing')
+        print(missing_capacity)
+        print('Korras')
+
+
+check_capacity(appliance, max_electicity_consumption, min_electicity_consumption, which_timeperiod_in_starts1, which_timeperiod_in_ends1,  which_timeperiod_in_starts2, which_timeperiod_in_ends2, which_timeperiod_in_starts3, which_timeperiod_in_ends3, which_timeperiod_in_starts4, which_timeperiod_in_ends4)
+timedifference = calculate_timedifference_in_hours(which_timeperiod_in_starts1, which_timeperiod_in_ends1)
+capacity = calculate_capacity(appliance, timedifference)
+
+     
     
     
 check_Amount_Of_Hours_Working(how_many_minutes_in, how_many_minutes_out, timeDifference1, timeDifference2, timeDifference3, timeDifference4)        
