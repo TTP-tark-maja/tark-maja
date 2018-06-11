@@ -1,12 +1,12 @@
 #kontrollfunktsioon
 
-## väljasoleku aeg ei saa olla pikem kui seesoleku aeg
+## väljasoleku aeg ei saa olla pikem kui seesoleku aeg ---
 ## seesoleku aeg ei saa olla üle 24h ---
 ## korraga ei saa olle sees üle 24h ---
-## korraga ei saa olla väljas kauem kui korraga sees
+## korraga ei saa olla väljas kauem kui korraga sees --- 
 ## algus aeg ja lõpuaeg peavad olema vastavalt enne ja pärast ---
 ## min ja max elektri kasutused ei saa miinuses olla
-## puhkeajad peavad mahtuma 24h sisse
+## puhkeajad peavad mahtuma 24h sisse ---
 
 from datetime import datetime, timedelta
 
@@ -93,6 +93,9 @@ def check_Amount_Of_Hours_Working(minutesWorking, minutesNotWorking, timeDiffere
     else:
         print("Total working time: ")
         print(totalWorkingTime)
+        
+
+    
     
 def check_capacity(appliance, max_capacity, min_capacity, time1start, time1end, time2start, time2end, time3start, time3end, time4start, time4end):
 
