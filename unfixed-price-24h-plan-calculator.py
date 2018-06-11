@@ -5,10 +5,11 @@
 ## korraga ei saa olle sees üle 24h ---
 ## korraga ei saa olla väljas kauem kui korraga sees --- 
 ## algus aeg ja lõpuaeg peavad olema vastavalt enne ja pärast ---
-## min ja max elektri kasutused ei saa miinuses olla
+## min ja max elektri kasutused ei saa miinuses olla ---
 ## puhkeajad peavad mahtuma 24h sisse ---
 
 from datetime import datetime, timedelta
+import json
 
 how_many_minutes_in = 180
 how_many_minutes_out = 60
@@ -39,6 +40,8 @@ which_timeperiod_out_ends3 = datetime(2015, 9, 12, 20, 9, 45)
 
 which_timeperiod_out_starts4 = datetime(2015, 9, 12, 18, 9, 45)
 which_timeperiod_out_ends4 = datetime(2015, 9, 12, 20, 9, 45)
+
+
 
 
 max_electicity_consumption = 10
@@ -115,7 +118,21 @@ def check_capacity(appliance, max_capacity, min_capacity, time1start, time1end, 
         print('missing')
         print(missing_capacity)
         print('Korras')
+        
+def timeGraph():
+    timePeriodsList = [which_timeperiod_in_starts1, which_timeperiod_in_starts2, which_timeperiod_in_starts3, which_timeperiod_in_starts4,
+                        which_timeperiod_in_ends1, which_timeperiod_in_ends2, which_timeperiod_in_ends3, which_timeperiod_in_ends4,
+                       which_timeperiod_out_starts1, which_timeperiod_out_starts2, which_timeperiod_out_starts3, which_timeperiod_out_starts4,
+                       which_timeperiod_out_ends1, which_timeperiod_out_ends2, which_timeperiod_out_ends3, which_timeperiod_out_ends4]
+    timePeriodsList.sort()
 
+    
+    {
+    "starttime-in": ["which_timeperiod_in_starts1", "which_timeperiod_in_starts2", "which_timeperiod_in_starts3","which_timeperiod_in_starts4"],
+    "endtime-in": ["which_timeperiod_in_ends1", "which_timeperiod_in_ends2", "which_timeperiod_in_ends3","which_timeperiod_in_ends4"],
+    "starttime-out": ["which_timeperiod_out_starts1", "which_timeperiod_out_starts2", "which_timeperiod_out_starts3","which_timeperiod_out_starts4"],
+    "endtime-out": ["which_timeperiod_out_ends1", "which_timeperiod_out_ends2", "which_timeperiod_out_ends3","which_timeperiod_out_ends4"]
+}
 
 check_capacity(appliance, max_electicity_consumption, min_electicity_consumption, which_timeperiod_in_starts1, which_timeperiod_in_ends1,  which_timeperiod_in_starts2, which_timeperiod_in_ends2, which_timeperiod_in_starts3, which_timeperiod_in_ends3, which_timeperiod_in_starts4, which_timeperiod_in_ends4)
 timedifference = calculate_timedifference_in_hours(which_timeperiod_in_starts1, which_timeperiod_in_ends1)
