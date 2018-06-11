@@ -1,31 +1,43 @@
+from datetime import datetime, timedelta
+
 how_many_minutes_in = 180
 how_many_minutes_out = 60
 
 how_many_minutes_in_at_once = 20
 how_many_minutes_out_at_once = 30
 
-which_timeperiod_in_starts = 1528460983
-which_timeperiod_in_ends = 1528460583
+which_timeperiod_in_starts = datetime(2015, 9, 12, 10, 9, 45)
+which_timeperiod_in_ends = datetime(2015, 9, 12, 13, 12, 10)
 
-which_timeperiod_out_starts = 2018-06-08 18:00:00
-which_timeperiod_out_ends = 2018-06-08 20:00:00
+which_timeperiod_out_starts = '2018-06-08 18:00:00'
+which_timeperiod_out_ends = '2018-06-08 20:00:00'
 
 max_electicity_consumption = 10
 min_electicity_consumption = 2
 
 appliance = 850
 
-def 24h_plan_calculator_unfixedprice(how_many_minutes_in, how_many_minutes_out, how_many_minutes_in_at_once, how_many_minutes_out_at_once,
-                                     which_timeperiod_in_starts, which_timeperiod_in_ends, which_timeperiod_out_starts, which_timeperiod_out_ends,
-                                     max_electicity_consumption, min_electicity_consumption, appliance):
-    
-    
-
-
-
+conditions = (how_many_minutes_in, how_many_minutes_out, how_many_minutes_in_at_once, how_many_minutes_out_at_once, which_timeperiod_in_starts, which_timeperiod_in_ends, which_timeperiod_out_starts, which_timeperiod_out_ends, max_electicity_consumption, min_electicity_consumption, appliance)
+  
 def calculate_capacity(applience, workinghours):
-    return workinghours*(applience/1000)
+    capacity = workinghours*(applience/1000)
+    print(capacity);
+    return capacity
 
-def calculate_hours(starttime, endtime):
-    
-     
+def calculate_timedifference_in_hours(starttime, endtime):
+    timedifference =(endtime-starttime)
+    duration_in_s = timedifference.total_seconds()
+    hours = divmod(duration_in_s, 3600)[0]
+    totalminutes = divmod(duration_in_s, 60)[0]
+    minutes = round((totalminutes-hours*60)/6, 2)
+    timedifference = hours+minutes
+    print(timedifference)
+    return timedifference
+
+def check_if_conditions_are_valid(conditions):
+    if(calculate_timedifference_in_hours(starttime, endtime))
+
+check_if_conditions_are_valid(conditions);
+
+timedifference = calculate_timedifference_in_hours(which_timeperiod_in_starts, which_timeperiod_in_ends)
+capacity = calculate_capacity(appliance, timedifference)
