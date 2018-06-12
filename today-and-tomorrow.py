@@ -5,8 +5,8 @@ import os
 from datetime import date, timedelta
 today = str(date.today())
 yesterday = str(date.today() - timedelta(1))
-print(yesterday)
-print(today)
+#print(yesterday)
+#print(today)
 
 today = str(date.today())
 tomorrow = datetime.date.today() + datetime.timedelta(days=1)
