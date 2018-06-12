@@ -27,7 +27,7 @@ with urllib.request.urlopen(text+yesterday1+text2+tomorrow1) as url:
 
         now = datetime.datetime.now()
 
-        for i in range (21, 46) :
+        for i in range (21, 45) :
             eestiajad =(eesti[i])
             kellaaeg = (eestiajad['timestamp'])
             price = (eestiajad['price'])
@@ -35,3 +35,35 @@ with urllib.request.urlopen(text+yesterday1+text2+tomorrow1) as url:
             json.dump(price, outfile)
             json.dump(time, outfile)
             outfile.write('\n')
+
+
+def splitPrices():
+    cheapPricesList = []
+    expensivePricesList = []
+    total_sum = 0
+    with open('todaydata.txt', 'r') as pricesList:
+        for line in pricesList:
+            count = len(open('todaydata.txt').readlines(  ))
+            a, b, c = line.split('"')
+            number = float(a)
+            total_sum += number
+            avg = total_sum/count
+    pricesList.close()
+    with open('todaydata.txt', 'r') as pricesList: 
+        for line in pricesList:
+            a, b, c = line.split('"')
+            number = float(a)
+            time = b
+            if (number < avg):
+                cheapPricesList.append(time)
+            else:            
+                expensivePricesList.append(time)
+                
+            
+        print("Cheap: ")
+        print(cheapPricesList)
+
+        print("Expensive: ")
+        print(expensivePricesList)
+
+splitPrices()  
