@@ -17,23 +17,30 @@
         <br>
     <div class="container">   
         <form>
+		<script src="pakett.js"></script>
             <legend>Fikseeritud hind või fikseerimata hind?</legend>
-                <input type="radio" name="price" value="fikseeritud" checked>Fikseeritud<br>
-                <input type="radio" name="price" value="fikseerimata">Fikseerimata<br>
-            <br>
+			<br>
+                <input id="1" type="radio" name="price" value="fikseeritud" onclick="textAll()">Fikseeritud<br>
+                <input id="2" type="radio" name="price" value="fikseerimata" onclick="textHide()">Fikseerimata<br>
+			<br>
+			<p id="text1" style="display:none">
             <legend>Päevahind</legend>
                 <input type="number" name="amprice" value="paevahind"> kW/h<br>
-            <br>
+            <br></p>
+			<p id="text2" style="display:none">
             <legend>Ööhind</legend>
                 <input type="number" name="pmprice" value="oohind"> kW/h<br>
-            <br>
+            <br></p>
+			<p id="text3" style="display:none">
             <legend>Kohaletoimetamisetasu</legend>
                 <input type="number" name="deliveryprice" value="kohaletoimetamisetasu"><br>
-            <br>
+            <br></p>
+			<p id="text4" style="display:none">
             <legend>Müüja marginaal</legend>
                 <input type="number" name="sellerprice" value="muujamarginaal"><br>
             <br>
-                <button type="submit">Salvesta</button>
+                <button type="submit">Salvesta</button></p>
+		
         </form>
     </div>        
 </body>
