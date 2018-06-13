@@ -5,50 +5,61 @@
     <title>Tark Maja</title>
     <link rel="stylesheet" type="text/css" href="design/style.css">
 </head>
-<body>
+<body>     
     <nav>
         <ul>
-            <li><a href="koduleht.php">Home</a></li>
-            <li><a href="paketiinfo.html">Paketi informatsioon</a></li>
-            <li><a href="tingimused.html">Seadme tingimused</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">#</a></li>
+            <li><a href="#">#</a></li>
         </ul>
     </nav>
+    <div class="sidenav">
+        <img src="M.png">
+        <br><br>
+        <a href="paketiinfo.html">Paketi info</a>
+        <a href="tingimused.html">Seadme tingimused</a>
+        <a href="#">#</a>
+    </div>
+
     <h1>Tingimuste sisestamine</h1>
-        <br>
-    <div class="container">   
-        <form>
-            <legend>Mitu minutit peab elektriseade ööpäevas olema sisse lülitatud?</legend>
-                <input type="number" name="am_worktime_min" value="sisselulitatud"><br>
+        <br>  
+        <div class="container">   
+            <form name="tingimused">
+                <legend>Mitu minutit peab elektriseade ööpäevas olema sisse lülitatud?</legend>
+                    <input type="number" name="am_worktime_min" value="sisselulitatud"><br>
+                <br>
+                <legend>Mitu minutit peab elektriseade ööpäevas olema välja lülitatud?</legend>
+                    <input type="number" name="pm_worktime_min" value="valjalulitatud"><br>
+                <br>
+                <legend>Mitu minutit peab elektriseade ööpäevas korraga töötama?</legend>
+                    <input type="number" name="alltime_worktime" value="oopaevatooaeg"><br>
+                <br>
+                <legend>Mitu minutit peab elektriseade ööpäevas korraga kinni olema?</legend>
+                    <input type="number" name="notworktime" value="oopaevaskinni"><br>
+                <br>
+                <legend>Maksimumvõimsus</legend>
+                    <input type="number" name="maxpower" value="maksimumvoimsus"><br>
+                <br>
+                <legend>Miinimumvõimsus</legend>
+                    <input type="number" name="minpower" value="minimumvoimsus"><br>
+                <br>
+                <br>
+            </form>
+            <form name="tooajad">    
+                <legend>Seade sisse lülitatud:</legend>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+                <br>
+                <legend>Seade välja lülitatud:</legend>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+            </form>
             <br>
-            <legend>Mitu minutit peab elektriseade ööpäevas olema välja lülitatud?</legend>
-                <input type="number" name="pm_worktime_min" value="valjalulitatud"> kW/h<br>
-            <br>
-            <legend>Mitu minutit peab elektriseade ööpäevas korraga töötama?</legend>
-                <input type="number" name="alltime_worktime" value="oopaevatooaeg"> kW/h<br>
-            <br>
-            <legend>Mitu minutit peab elektriseade ööpäevas korraga kinni olema?</legend>
-                <input type="number" name="notworktime" value="oopaevaskinni"><br>
-            <br>
-            <legend>Maksimumvõimsus</legend>
-                <input type="number" name="maxpower" value="maksimumvoimsus"><br>
-            <br>
-            <legend>Miinimumvõimsus</legend>
-                <input type="number" name="minpower" value="minimumvoimsus"><br>
-            <br>
-            <br>
-            <legend>Seade sisse lülitatud:</legend>
-            <input type="time" name="tooaeg"><br>
-            <input type="time" name="tooaeg"><br>
-            <input type="time" name="tooaeg"><br>
-            <input type="time" name="tooaeg"><br>
-            <br>
-            <legend>Seade välja lülitatud:</legend>
-            <input type="time" name="tooaeg"><br>
-            <input type="time" name="tooaeg"><br>
-            <input type="time" name="tooaeg"><br>
-            <input type="time" name="tooaeg"><br>
-            <button type="submit">Salvesta</button>
-        </form>
-    </div>     
+            <input type="submit" value="Salvesta"> 
+        </div>
 </body>
 </html>
