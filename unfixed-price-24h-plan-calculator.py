@@ -117,6 +117,41 @@ min_electicity_consumption = 10
 
 appliance = 850
 
+def get_input_from_file():
+    #take the input form file
+    with open ('conditions.txt', 'r') as userConditions:
+        conditionsList = [how_many_minutes_in, how_many_minutes_out, how_many_minutes_in_at_once, how_many_minutes_out_at_once, max_electicity_consumption, min_electicity_consumption, appliance]
+        conditionsList[0] = userConditions.readline()
+        conditionsList[1] = userConditions.readline()
+        conditionsList[2] = userConditions.readline()
+        conditionsList[3] = userConditions.readline()
+        conditionsList[4] = userConditions.readline()
+        conditionsList[5] = userConditions.readline()
+        conditionsList[6] = userConditions.readline()
+        
+        
+    with open ('input.txt', 'r') as userInput:
+        inputList = [which_timeperiod_in_starts1, which_timeperiod_in_ends1, which_timeperiod_in_starts2, which_timeperiod_in_ends2, which_timeperiod_in_starts3, which_timeperiod_in_ends3, which_timeperiod_in_starts4, which_timeperiod_in_ends4, which_timeperiod_out_starts1, which_timeperiod_out_ends1, which_timeperiod_out_starts2, which_timeperiod_out_ends2, which_timeperiod_out_starts3, which_timeperiod_out_ends3, which_timeperiod_out_starts4, which_timeperiod_out_ends4]
+        inputList[0] = userInput.readline()
+        inputList[1] = userInput.readline()
+        inputList[2] = userInput.readline()
+        inputList[3] = userInput.readline()
+        inputList[4] = userInput.readline()
+        inputList[5] = userInput.readline()
+        inputList[6] = userInput.readline()
+        inputList[7] = userInput.readline()
+        inputList[8] = userInput.readline()
+        inputList[9] = userInput.readline()
+        inputList[10] = userInput.readline()
+        inputList[11] = userInput.readline()
+        inputList[12] = userInput.readline()
+        inputList[13] = userInput.readline()
+        inputList[14] = userInput.readline()
+        inputList[15] = userInput.readline()
+            
+ 
+get_input_from_file()
+
 def convert_min_to_hour(minutes):
     return minutes/60
     
