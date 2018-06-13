@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="utf-8">
+    <title>Tark Maja</title>
+    <link rel="stylesheet" type="text/css" href="design/style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+        <h1>Paketi informatsioon</h1>
+        <br>
+    <div class="container">   
+        <form>
+            <legend>Fikseeritud hind või fikseerimata hind?</legend>
+                <input type="radio" name="price" value="fikseeritud" checked>Fikseeritud<br>
+                <input type="radio" name="price" value="fikseerimata">Fikseerimata<br>
+            <br>
+            <legend>Päevahind</legend>
+                <input type="number" name="amprice" value="paevahind"> kW/h<br>
+            <br>
+            <legend>Ööhind</legend>
+                <input type="number" name="pmprice" value="paevahind"> kW/h<br>
+            <br>
+            <legend>Kohaletoimetamisetasu</legend>
+                <input type="number" name="deliveryprice" value="kohaletoimetamisetasu"><br>
+            <br>
+            <legend>Müüja marginaal</legend>
+                <input type="number" name="sellerprice" value="muujamarginaal"><br>
+            <br>
+                <input type="submit" value="Salvesta">
+        </form>
+    </div>        
+</body>
+</html>
