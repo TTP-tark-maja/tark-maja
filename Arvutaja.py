@@ -13,10 +13,10 @@ WattsUsed = 0
 
 def daylightSavingsTime():
     daylightTime = time.daylight and time.localtime().tm_isdst > 0
-    if daylightTime == True:
-        return("summertime") 
+    if(daylightTime == True):
+        return("summer")
     else:
-        return("wintertime") 
+        return("winter")
     
 def timeOfWeek():  #function to see if its weekday or weekend
     dayNr = datetime.datetime.today().weekday()
@@ -52,9 +52,9 @@ with urllib.request.urlopen(text+yesterday1+text2+tomorrow1) as url:
             eestiajad =(eesti[i])
             kellaaeg = (eestiajad['timestamp'])
             price = (eestiajad['price'])
-            time = datetime.datetime.fromtimestamp(kellaaeg).isoformat()
+            time2 = datetime.datetime.fromtimestamp(kellaaeg).isoformat()
             json.dump(price, outfile)
-            json.dump(time, outfile)
+            json.dump(time2, outfile)
             outfile.write('\n')
 
 
@@ -73,13 +73,13 @@ def splitPrices():
     with open('todaydata.txt', 'r') as pricesList: 
         for line in pricesList:
             a, b, c = line.split('"')
-            time = b
-            time = time.replace("T", " ")
+            time2 = b
+            time2 = time2.replace("T", " ")
             number = float(a)
             if (number < avg):
-                cheap_times.append(time)
+                cheap_times.append(time2)
             else:            
-                expensive_times.append(time)
+                expensive_times.append(time2)
         print(cheap_times)
         return cheap_times, expensive_times
 
@@ -89,34 +89,45 @@ fixed = (str((f.readline().rstrip())))
 print(fixed)
 print(fixed)
 if(fixed == "fikseeritud"):
-    daylightSavingTime = daylightSavingTime()
-    timeOfWeek = timeOfWeek()
-    if(daylightSavingTime == 'summer'):
-        if(timeOfWeek == 'weekday'):
-            cheap_times = []
-        else:
-            cheap_times = []
-    if(daylightSavingTime == 'winter'):
-        if(timeOfWeek == 'weekday'):
-            cheap_times = []
-        else:
-            cheap_times = []
-        
-    cheap_times = []
+    daylightSavingTime = daylightSavingsTime()
+    timeOfWeek()
     expensive_times = []
+    cheap_times = []
+    #fikseeritud hind erineb aastaajast ja nädalapäevast, nädalavahetustel odavam aeg puudub
+    if(daylightSavingTime == 'summer'):
+        if(timeOfWeek() == 'weekday'):
+            #kood käivitatakse kella kahest ehk ajad on arvutatud arvestusega, et time.now on kell kaks
+            for x in range(-14, -6):
+                cheap_times.append(datetime.datetime.now() + timedelta(days=1, hours=x))
+            for x in range(-7, 9):
+                expensive_times.append(datetime.now() + timedelta(days=1, hours=x)) 
+        else:
+            for x in range(-14, 9):
+                expensive_times.append(datetime.datetime.now() + timedelta(days=1, hours=x))
+    if(daylightSavingTime == 'winter'):
+        if(timeOfWeek() == 'summer'):
+            for x in range(-14, -5):
+                cheap_times.append(datetime.datetime.now() + timedelta(days=1, hours=x))
+            cheap_times.append(datetime.datetime.now() + timedelta(days=1, hours=9))
+            for x in range(-6, 8):
+                expensive_times.append(datetime.datetime.now() + timedelta(days=1, hours=x)) 
+        else:
+            for x in range(-14, 9):
+                expensive_times.append(datetime.datetime.now() + timedelta(days=1, hours=x))
     day_price = (f.read())
     night_price = (f.read())
     delivery_price = (f.read())
     marginal_price = (f.read())
     f.close()
+    print(expensive_times)
 else:
     delivery_price = (f.read())
     marginal_price = (f.read())
     f.close()
-    cheap_times, expensive_times = splitPrices()
+    splitPrices()
 
 #kasutaja sisestatud tingimused
-how_many_minutes_in = 1000
+how_many_minutes_in = 1500
 how_many_minutes_out = 1600
 
 how_many_minutes_in_at_once = 20
@@ -184,11 +195,23 @@ def return_existing_workingtimes(which_timeperiod_in_starts1, which_timeperiod_i
     if(which_timeperiod_in_starts1 is not 0 and which_timeperiod_in_ends1 is not 0):
         return '4'
     
-def place_missing_times_to_plan(available_times, cheap_times, hours_needed, turn_on_at, turn_off_at):
+def place_missing_times_to_plan(available_times, cheap_times, expensive_times, hours_needed, turn_on_at, turn_off_at):
+    u=0
     for x in range(1, available_times):
-        cheap_times[x]=datetime.datetime.strptime(cheap_times[x] , "%Y-%m-%d %H:%M:%S")
-        turn_on_at.append(cheap_times[x])
-        turn_off_at.append(cheap_times[x] + timedelta(hours=hours_needed * 1.66666666667))
+        cheap_length = (len(cheap_times))
+        expensive_length = (len(expensive_times))
+        print(cheap_length)
+        print(expensive_length)
+        if(x<cheap_length):
+            cheap_times[x]=datetime.datetime.strptime(cheap_times[x] , "%Y-%m-%d %H:%M:%S")
+            turn_on_at.append(cheap_times[x])
+            turn_off_at.append(cheap_times[x] + timedelta(hours=hours_needed * 1.66666666667))
+            print('UGPIGPGPGGIGÖ')
+        else:
+            expensive_times[x]=datetime.datetime.strptime(cheap_times[x] , "%Y-%m-%d %H:%M:%S")
+            turn_on_at.append(expensive_times[x])
+            turn_off_at.append(expensive_times[x] + timedelta(hours=hours_needed * 1.66666666667))
+            print('UGPIGPGPGGIGÖ')
     return turn_on_at, turn_off_at
 
 #kõikide aegade vahe tundides
@@ -280,26 +303,23 @@ def check_final(check1, check2, check3, check4, check5, check6, check7, check8, 
 if(check_final(check1, check2, check3, check4, check5, check6, check7, check8, check9, check10)==True):
     turn_device_on=[]
     turn_device_off=[]
+    how_many_times = return_existing_workingtimes(which_timeperiod_in_starts1, which_timeperiod_in_starts2, which_timeperiod_in_starts3, which_timeperiod_in_starts4, which_timeperiod_in_ends1, which_timeperiod_in_ends2, which_timeperiod_in_ends3, which_timeperiod_in_ends4)
+    if(how_many_times == '0'):
+        turn_device_on=[]
+        turn_device_off=[]
+    elif(how_many_times == '1'):
+        turn_device_on=[which_timeperiod_in_starts1]
+        turn_device_off=[which_timeperiod_in_ends1]
+    elif(how_many_times == '2'):
+        turn_device_on=[which_timeperiod_in_starts1, which_timeperiod_in_starts2]
+        turn_device_off=[which_timeperiod_in_ends1, which_timeperiod_in_ends2]
+    elif(how_many_times == '3'):
+        turn_device_on=[which_timeperiod_in_starts1, which_timeperiod_in_starts2, which_timeperiod_in_starts3]
+        turn_device_off=[which_timeperiod_in_ends1, which_timeperiod_in_ends2, which_timeperiod_in_ends3]
+    elif(how_many_times == '4'):
+        turn_device_on=[which_timeperiod_in_starts1, which_timeperiod_in_starts2, which_timeperiod_in_starts3, which_timeperiod_in_starts4]
+        turn_device_off=[which_timeperiod_in_ends1, which_timeperiod_in_ends2, which_timeperiod_in_ends3, which_timeperiod_in_ends4]
     #kui pole vaja lisaaegu kuna kasutaja sisestatud aegadest piisab
-    if(check10<max_electicity_consumption):
-        how_many_times = return_existing_workingtimes(which_timeperiod_in_starts1, which_timeperiod_in_starts2, which_timeperiod_in_starts3, which_timeperiod_in_starts4, which_timeperiod_in_ends1, which_timeperiod_in_ends2, which_timeperiod_in_ends3, which_timeperiod_in_ends4)
-        if(how_many_times == '0'):
-            turn_device_on=[]
-            turn_device_off=[]
-        elif(how_many_times == '1'):
-            turn_device_on=[which_timeperiod_in_starts1]
-            turn_device_off=[which_timeperiod_in_ends1]
-        elif(how_many_times == '2'):
-            turn_device_on=[which_timeperiod_in_starts1, which_timeperiod_in_starts2]
-            turn_device_off=[which_timeperiod_in_ends1, which_timeperiod_in_ends2]
-        elif(how_many_times == '3'):
-            turn_device_on=[which_timeperiod_in_starts1, which_timeperiod_in_starts2, which_timeperiod_in_starts3]
-            turn_device_off=[which_timeperiod_in_ends1, which_timeperiod_in_ends2, which_timeperiod_in_ends3]
-        elif(how_many_times == '4'):
-            turn_device_on=[which_timeperiod_in_starts1, which_timeperiod_in_starts2, which_timeperiod_in_starts3, which_timeperiod_in_starts4]
-            turn_device_off=[which_timeperiod_in_ends1, which_timeperiod_in_ends2, which_timeperiod_in_ends3, which_timeperiod_in_ends4]
-    else:
-        print('error')
     if(check10<=0):
         text_file1 = open("WorkingTimes.txt", "w")
         text_file2 = open("TurnOffTimes.txt", "w")
@@ -319,7 +339,7 @@ if(check_final(check1, check2, check3, check4, check5, check6, check7, check8, c
         while(check_if_hours_fit_to_limit(missing_hours, maxlimit) is False):
           i=i*2
           missing_hours = missing_hours/2
-        place_missing_times_to_plan(i, cheap_times, missing_hours, turn_device_on, turn_device_off)
+        place_missing_times_to_plan(i, cheap_times, expensive_times, missing_hours, turn_device_on, turn_device_off)
         print('Korras, jagasime aja', i, 'Ajajupid on', missing_hours, 'pikkused')
         text_file1 = open("WorkingTimes.txt", "w")
         text_file2 = open("TurnOffTimes.txt", "w")
@@ -329,5 +349,3 @@ if(check_final(check1, check2, check3, check4, check5, check6, check7, check8, c
           text_file2.write("%s\n" % item)
         text_file1.close()
         text_file2.close()
-
-print(turn_device_off)
