@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #e7eff8;
+    text-align: center;
+}
+
+ul {
+    margin-left: 60px;
+}
+
+
+ul li {
+   list-style: none;
+   display: inline-block; 
+   line-height: 60px;
+}
+
+ul li a {
+    display: block;
+    text-decoration: none;
+    font-size: 11px;
+    font-family: "Verdana";
+    color: black;
+    padding: 0px 20px;
+}
+
+ul li a:hover {
+    color: rgb(11, 137, 240);
+}
+
+.banner {
+    width: 100%;
+    display: block;
+}
+
+.banner img {
+    width: 100%;
+    display: block;
+    filter: grayscale(90%);
+}
+
+nav {
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Verdana";
+    background-color: white;
+}
+
+hr{
+    border-color: rgb(11, 137, 240);
+}
+
+.container {
+    margin: 20px;
+    padding: 30px;
+    padding-left: 150px;
+    padding-right: 150px;
+    display: inline-block;
+    border-radius: 10px;
+    background-color:white;
+    box-shadow: 4px 5px 50px rgb(167, 167, 167);
+}
+
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Verdana";
+    font-size: 35px; 
+    letter-spacing: 3px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.pakett {
+    font-family: "Verdana";
+    font-size: 12px;
+}
+
+legend {
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.button {
+    padding-top: 10px;
+}
+
+input[type=button] {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 2px;
+    border: none;
+    padding: 10px 50px;
+    color: white;
+    background-color: rgb(11, 137, 240);
+    border-radius: 4px; 
+    transition-duration: 0.4s;
+}
+
+input[type=button]:hover {
+    background-color: rgb(214, 227, 245);
+    color: black;
+}
+
+input[type=number] {
+    padding: 5px 20px;
+    margin-top: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=text] {
+    padding: 5px 20px;
+    margin-top: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=time] {
+    padding: 3px 20px;
+    margin-top: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* seadmete classid*/
+.aParent div {
+    align-content: center;
+    clear: none; 
+}
+
+.containeruks {
+    margin: 20px;
+    padding: 30px;
+    display: inline-block;
+    padding-left: 150px;
+    padding-right: 150px;
+    border-radius: 10px;
+    background-color:white;
+    box-shadow: 4px 5px 50px rgb(167, 167, 167);
+}
+
+.containerkaks {
+    margin: 20px;
+    padding: 30px;
+    overflow: hidden;
+    display: inline-block;
+    padding-left: 150px;
+    padding-right: 150px;
+    border-radius: 10px;
+    background-color:white;
+    box-shadow: 4px 5px 50px rgb(167, 167, 167);
+}
