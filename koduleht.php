@@ -11,17 +11,18 @@
             <li><a href="koduleht.php">Home</a></li>
             <li><a href="paketiinfo.html">Paketi informatsioon</a></li>
             <li><a href="tingimused.html">Seadme tingimused</a></li>
+			<li><a href="seadmed.php">Seadmed</a></li>
         </ul>
     </nav>
+	<div class="container">  
         <h1>Seadme logi</h1>
 		<?php
-		$myfile = fopen("logfile.txt", "r") or die("Unable to open file!");
+		$myfile = fopen("logfile.txt", "r") or die("ei saa avada faili!");
 		while(!feof($myfile)) {
 		echo fgets($myfile) . "<br>";
 		}
 		fclose($myfile);
-		?>
-    <div>   
+		?> 
         <form>
         </form>
     </div>        

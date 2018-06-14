@@ -1,59 +1,3 @@
-<?php
-if isset($_POST['submit']){
-	
-	$conditionsFile = "userconditions.txt";
-	$minutesSwitchedOn = $_POST["am_worktime_min"];
-    $minutesSwitchedOff = $_POST["pm_worktime_min"];
-    $minutesSwitchedOnAtOnce = $_POST["alltime_worktime"];
-    $minutesSwitchedOffAtOnce = $_POST["notworktime"];
-    $maxPower = $_POST["maxpower"];
-    $minPower = $_POST["minpower"];
-	$workTimeStart1 = $_POST["tooaeg1"];
-	$workTimeStart2 = $_POST["tooaeg2"];
-	$workTimeStart3 = $_POST["tooaeg3"];
-	$workTimeStart4 = $_POST["tooaeg4"];
-	$workTimeEnd1 = $_POST["mittetooaeg1"];
-	$workTimeEnd2 = $_POST["mittetooaeg2"];
-	$workTimeEnd3 = $_POST["mittetooaeg3"];
-	$workTimeEnd4 = $_POST["mittetooaeg4"];
-
-    $ConFile = fopen($conditionsFile,"w") or die("Unable to open file!");
-        $data = "\t"."{$minutesSwitchedOn}";
-        $data .= "\t"."{$minutesSwitchedOff}";
-        $data .= "\t"."{$minutesSwitchedOnAtOnce}";
-        $data .= "\t"."{$minutesSwitchedOffAtOnce}";
-        $data .= "\t"."{$workTimeStart1}";
-        $data .= "\t"."{$workTimeStart2}";
-		$data .= "\t"."{$workTimeStart3}";
-		$data .= "\t"."{$workTimeStart4}";
-		$data .= "\t"."{$workTimeEnd1}";
-		$data .= "\t"."{$workTimeEnd2}";
-		$data .= "\t"."{$workTimeEnd3}";
-		$data .= "\t"."{$workTimeEnd4}";
-		
-
-    fwrite($ConFile,$data);
-    fclose($ConFile);
-}	
-
-//homseks katsetamiseks https://stackoverflow.com/questions/14998961/php-write-file-from-input-to-txt
-/*if(isset($_POST['field1']) && isset($_POST['field2'])) {
-    $data = $_POST['field1'] . '-' . $_POST['field2'] . "\n";
-    $ret = file_put_contents('/tmp/mydata.txt', $data, FILE_APPEND | LOCK_EX);
-    if($ret === false) {
-        die('There was an error writing this file');
-    }
-    else {
-        echo "$ret bytes written to file";
-    }
-}
-else {
-   die('no post data to process');
-}*/
-	
-
-?>
-
 <!DOCTYPE html>
 <html lang="et">
 <head>
@@ -64,51 +8,57 @@ else {
 <body>     
     <nav>
         <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="seadmed.html">SEADMED</a></li>
-            <li><a href="#">#</a></li>
+            <li><a href="koduleht.php">Home</a></li>
+            <li><a href="paketiinfo.html">Paketi informatsioon</a></li>
+            <li><a href="tingimused.html">Seadme tingimused</a></li>
+            <li><a href="seadmed.php">Seadmed</a></li>
+            <!--<li><a href="#">#</a></li>-->
         </ul>
     </nav>
-    
-    <div class="banner">
-        <img class="banner-image" src="4.png">
-     </div><hr>
-
+   <!-- <div class="banner">
+       <!-- <img class="banner-image" src="4.png">
+     </div><hr>-->
     <h1>Tingimuste sisestamine</h1>
         <br>  
         <div class="container">   
-            <form name="tingimused" method="post">
+            <form name="tingimused">
                 <legend>Mitu minutit peab elektriseade ööpäevas olema sisse lülitatud?</legend>
-                    <input type="number" name="am_worktime_min"><br>
+                    <input type="number" name="am_worktime_min" value="sisselulitatud"><br>
                 <br>
                 <legend>Mitu minutit peab elektriseade ööpäevas olema välja lülitatud?</legend>
-                    <input type="number" name="pm_worktime_min"><br>
+                    <input type="number" name="pm_worktime_min" value="valjalulitatud"><br>
                 <br>
                 <legend>Mitu minutit peab elektriseade ööpäevas korraga töötama?</legend>
-                    <input type="number" name="alltime_worktime"><br>
+                    <input type="number" name="alltime_worktime" value="oopaevatooaeg"><br>
                 <br>
                 <legend>Mitu minutit peab elektriseade ööpäevas korraga kinni olema?</legend>
-                    <input type="number" name="notworktime"><br>
+                    <input type="number" name="notworktime" value="oopaevaskinni"><br>
                 <br>
                 <legend>Maksimumvõimsus</legend>
-                    <input type="number" name="maxpower"><br>
+                    <input type="number" name="maxpower" value="maksimumvoimsus"><br>
                 <br>
                 <legend>Miinimumvõimsus</legend>
-                    <input type="number" name="minpower"><br>
-                <br> 
+                    <input type="number" name="minpower" value="minimumvoimsus"><br>
+                <br>
+                <br>
+            </form>
+            <form name="tooajad">    
                 <legend>Seade sisse lülitatud:</legend>
-                <input type="time" name="tooaeg1"><br>
-                <input type="time" name="tooaeg2"><br>
-                <input type="time" name="tooaeg3"><br>
-                <input type="time" name="tooaeg4"><br>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
                 <br>
                 <legend>Seade välja lülitatud:</legend>
-                <input type="time" name="mittetooaeg1"><br>
-                <input type="time" name="mittetooaeg2"><br>
-                <input type="time" name="mittetooaeg3"><br>
-                <input type="time" name="mittetooaeg4"><br>
-				<input type="submit" name="submit" value="SALVESTA">
-            </form>        
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+                <input type="time" name="tooaeg"><br>
+            </form>
+            <br>
+        <div class="button">
+            <input type="button" value="SALVESTA">
+        </div> 
         </div>
 </body>
 </html>
