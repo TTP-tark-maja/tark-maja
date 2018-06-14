@@ -79,6 +79,17 @@ h1 {
     padding-bottom: 20px;
 }
 
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Verdana";
+    font-size: 20px; 
+    letter-spacing: 3px;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
 .pakett {
     font-family: "Verdana";
     font-size: 12px;
@@ -137,31 +148,40 @@ input[type=time] {
     box-sizing: border-box;
 }
 
-/* seadmete classid*/
-.aParent div {
+/*seadmed.html css*/
+.main-grid {
+    display: inline-grid;
+    margin: 30px;
+    padding-bottom: 20px;
+    padding-right: 80px;
+    padding-left: 80px;
+    border-radius: 10px;
     align-content: center;
-    clear: none; 
-}
-
-.containeruks {
-    margin: 20px;
-    padding: 30px;
-    display: inline-block;
-    padding-left: 150px;
-    padding-right: 150px;
-    border-radius: 10px;
-    background-color:white;
+    grid-template-columns: repeat(4, [col] auto ) ;
+    grid-template-rows: repeat(2, [row] auto );
+    background-color: white;
+    color: #3a3a3a;
     box-shadow: 4px 5px 50px rgb(167, 167, 167);
 }
 
-.containerkaks {
-    margin: 20px;
-    padding: 30px;
-    overflow: hidden;
-    display: inline-block;
-    padding-left: 150px;
-    padding-right: 150px;
-    border-radius: 10px;
-    background-color:white;
-    box-shadow: 4px 5px 50px rgb(167, 167, 167);
+.header-uks {
+    grid-column: col / span 2;
+    grid-row: row;
+    padding-right: 80px;
+}
+
+.header-kaks {
+    grid-column: col 3 / span 2;
+    grid-row: row;
+}
+
+.loetelu {
+    grid-column: col / span 2;
+    grid-row: row 2;
+    padding-right: 80px;
+}
+
+.lisamine {
+    grid-column: col 3 / span 2;
+    grid-row: row 2;
 }
