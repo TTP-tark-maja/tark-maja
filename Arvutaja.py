@@ -3,7 +3,16 @@ import urllib.request, json
 import os
 import datetime
 import time
+import matplotlib.pyplot as plt
 #import datetime.strptime
+#modules for graphs
+import matplotlib.pyplot as plt
+import plotly
+import plotly.plotly as py
+import plotly.graph_objs as go
+import numpy as np
+import pylab as plt
+import matplotlib.patches as mpatches
 
 #kas suveaeg või talveaeg
 NumberOfHooursUse = 0
@@ -80,7 +89,6 @@ def splitPrices():
                 cheap_times.append(time2)
             else:            
                 expensive_times.append(time2)
-        print(cheap_times)
         return cheap_times, expensive_times
 
 #lugeda failist elektriandmes
@@ -95,34 +103,42 @@ if(fixed == "fikseeritud"):
     if(daylightSavingTime == 'summer'):
         if(timeOfWeek() == 'weekday'):
             #kood käivitatakse kella kahest ehk ajad on arvutatud arvestusega, et time.now on kell kaks
-            for x in range(-14, -6):
-                cheap_times.append(datetime.datetime.now() + timedelta(days=1, hours=x))
-            for x in range(-7, 9):
-                expensive_times.append(datetime.now() + timedelta(days=1, hours=x)) 
+            for x in range(0, 6):
+                normaltime = datetime.datetime.now() + timedelta(hours=x)
+                sringtime = normaltime.strftime("%Y-%m-%d %H:%M:%S")
+                cheap_times.append(sringtime)
+            for x in range(7, 24):
+                normaltime = datetime.datetime.now() + timedelta(hours=x)
+                sringtime = normaltime.strftime("%Y-%m-%d %H:%M:%S")
+                expensive_times.append(sringtime) 
         else:
-            for x in range(-14, 9):
-                expensive_times.append(datetime.datetime.now() + timedelta(days=1, hours=x))
+            for x in range(0, 24):
+                normaltime = datetime.datetime.now() + timedelta(hours=x)
+                sringtime = normaltime.strftime("%Y-%m-%d %H:%M:%S")
+                expensive_times.append(sringtime)
     if(daylightSavingTime == 'winter'):
         if(timeOfWeek() == 'summer'):
-            for x in range(-14, -5):
-                cheap_times.append(datetime.datetime.now() + timedelta(days=1, hours=x))
-            cheap_times.append(datetime.datetime.now() + timedelta(days=1, hours=9))
-            for x in range(-6, 8):
-                expensive_times.append(datetime.datetime.now() + timedelta(days=1, hours=x)) 
+            for x in range(0, 7):
+                normaltime = datetime.datetime.now() + timedelta(hours=x)
+                sringtime = normaltime.strftime("%Y-%m-%d %H:%M:%S")
+                cheap_times.append(sringtime)
+            for x in range(8, 23):
+                normaltime = datetime.datetime.now() + timedelta(hours=x)
+                sringtime = normaltime.strftime("%Y-%m-%d %H:%M:%S")
+                expensive_times.append(sringtime) 
         else:
-            for x in range(-14, 9):
-                expensive_times.append(datetime.datetime.now() + timedelta(days=1, hours=x))
+            for x in range(0, 24):
+                expensive_times.append(datetime.datetime.now() + timedelta(hours=x))
     day_price = (f.read())
     night_price = (f.read())
     delivery_price = (f.read())
     marginal_price = (f.read())
     f.close()
-    print(expensive_times)
 else:
     delivery_price = (f.read())
     marginal_price = (f.read())
     f.close()
-    splitPrices()
+    cheap_times, expensive_times = splitPrices()
 
 #kasutaja sisestatud tingimused
 #loeb sisse kõik tingimused
@@ -136,7 +152,8 @@ how_many_minutes_out_at_once = int(t.readline())
 max_electicity_consumption = int(t.readline())
 min_electicity_consumption = int(t.readline())
 
-tomorrownight = datetime.datetime.now() + timedelta(hours=10)
+tomorrownight = datetime.datetime.now() + timedelta(hours=-14)
+
 h, m = t.readline().split(':')
 h=int(h)
 m=int(m)
@@ -245,17 +262,15 @@ def place_missing_times_to_plan(available_times, cheap_times, expensive_times, h
     for x in range(1, available_times):
         cheap_length = (len(cheap_times))
         expensive_length = (len(expensive_times))
-        print(cheap_length)
-        print(expensive_length)
         if(x<cheap_length):
             cheap_times[x]=datetime.datetime.strptime(cheap_times[x] , "%Y-%m-%d %H:%M:%S")
             turn_on_at.append(cheap_times[x])
             turn_off_at.append(cheap_times[x] + timedelta(hours=hours_needed * 1.66666666667))
-        else:
-            expensive_times[x]=datetime.datetime.strptime(cheap_times[x] , "%Y-%m-%d %H:%M:%S")
+        elif(x<expensive_length):
+            expensive_times[x]=datetime.datetime.strptime(expensive_times[x] , "%Y-%m-%d %H:%M:%S")
             turn_on_at.append(expensive_times[x])
             turn_off_at.append(expensive_times[x] + timedelta(hours=hours_needed * 1.66666666667))
-            print('UGPIGPGPGGIGÖ')
+
     return turn_on_at, turn_off_at
 
 #kõikide aegade vahe tundides
@@ -299,7 +314,6 @@ def check_workinghours(minutes_working, minutes_not_working, timeIn1, timeIn2, t
         return False
     else:
         print("Total working time: ")
-        print(working_time_total)
         return(working_time_total)
     
 def check_capacity(appliance, max_capacity, min_capacity, hours_working):
@@ -375,9 +389,7 @@ if(check_final(check1, check2, check3, check4, check5, check6, check7, check8, c
         text_file2.close()
     else:
         missing_power = round(check10, 1)
-        print(missing_power)
         missing_hours = round(calculate_hours_from_capacity(appliance, missing_power), 1)
-        print(missing_hours)
         maxlimit = convert_min_to_hour(how_many_minutes_in_at_once)
         i=1
         while(check_if_hours_fit_to_limit(missing_hours, maxlimit) is False):
@@ -393,3 +405,67 @@ if(check_final(check1, check2, check3, check4, check5, check6, check7, check8, c
           text_file2.write("%s\n" % item)
         text_file1.close()
         text_file2.close()
+#teeme visuaalse graafiku
+def visulize_timedata():
+    #function that visulizes todays data as a linegraph
+    #must install Matplotlib
+    price = []
+    time = []
+    workingtimes = []
+    notworkingtimes = []
+    annotation = []
+    with open('todaydata.txt', 'r') as pricesList, open('WorkingTimes.txt','r') as workingTimes, open('TurnOfftimes.txt','r') as notWorkingTimes:
+        for line in pricesList:
+            #taking the times and prices from todaydata.txt and making a linegraph
+            a, b, c = line.split('"')
+            priceA = float(a) #a - taking the prices from todays data
+            timeB = b #b - taking the dates from todays data
+            timeB = timeB.replace("T", " ")
+            timeB = datetime.datetime.strptime(timeB , "%Y-%m-%d %H:%M:%S")
+            d, e = str(timeB).split(" ")
+            
+            price.append(priceA)                                               
+            #time.append(e)
+            time.append(timeB)
+            
+        indexx=1
+        for line in workingTimes:
+            #taking the times from workingtimes.txt and adding them to the table as dots
+            uu = line.strip()
+            if(indexx < 5):
+                uu, oo = uu.split('.')
+                indexx = indexx+1
+            timeB2 = datetime.datetime.strptime(uu , "%Y-%m-%d %H:%M:%S")
+            f, g = line.split(' ')
+            timeG = g #g - taking the times from working times
+            #workingtimes.append(timeG)
+            workingtimes.append(timeB2)
+        indexx=1
+        for line in notWorkingTimes:
+            ee = line.strip()
+            if(indexx < 5):
+                ee, oo = ee.split('.')
+                indexx = indexx+1
+            #taking the times from notworkingtimes.txt and adding them to the table as dots
+            timeB3 = datetime.datetime.strptime(ee , "%Y-%m-%d %H:%M:%S")
+            h, i = line.split(' ')
+            timeI = i #i - taking the times from not working times
+            notworkingtimes.append(timeB3)
+
+    workline = [40 for aeg in workingtimes]
+    endline = [40 for aeg in workingtimes]
+    green_patch = mpatches.Patch(color='aqua', label='Device started working')
+    red_patch = mpatches.Patch(color='black', label='Device ended working')
+    plt.plot(time, price, color='hotpink')
+    plt.scatter(workingtimes, workline, color='aqua')
+    plt.scatter(notworkingtimes, endline, color='black')
+    plt.xlabel("time(date, hour)")
+    plt.ylabel("Electricity price(€/MWh)")
+    plt.title("Today's electricity prices(24h), includes device's Working timetable")
+    plt.gcf().autofmt_xdate()
+    plt.legend(handles=[green_patch, red_patch])
+    plt.savefig('24h.png')
+    #plt.show()
+    
+visulize_timedata()
+
