@@ -93,6 +93,7 @@ h2 {
 .pakett {
     font-family: "Verdana";
     font-size: 12px;
+    position: relative;
 }
 
 legend {
@@ -102,6 +103,58 @@ legend {
 
 .button {
     padding-top: 10px;
+}
+
+.radiobtn {
+    display: block;
+    position: relative;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-family: "Verdana";
+}
+
+.radiobtn input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    height: 18px;
+    width: 18px;
+    background-color: lightgray;
+    border-radius: 50%;
+}
+
+.radiobtn:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.radiobtn input:checked ~ .checkmark {
+    background-color:rgb(11, 137, 240);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radiobtn input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.radiobtn .checkmark:after {
+    top: 5px;
+   left: 5px;
+   width: 8px;
+   height: 8px;
+   border-radius: 50%;
+   background: white;
 }
 
 input[type=button] {
@@ -148,6 +201,10 @@ input[type=time] {
     box-sizing: border-box;
 }
 
+input[type=radio] {
+    font-family: "Verdana";
+}
+
 /*seadmed.html css*/
 .main-grid {
     display: inline-grid;
@@ -184,4 +241,25 @@ input[type=time] {
 .lisamine {
     grid-column: col 3 / span 2;
     grid-row: row 2;
+}
+
+.seade {
+    margin: 26px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color:white;
+}
+
+.seade a {
+    display: block;
+    text-decoration: none;
+    font-size: 11px;
+    font-family: "Verdana";
+    color: black;
+    padding: 0px 20px;
+}
+
+.seade a:hover {
+    color: rgb(11, 137, 240);
 }
