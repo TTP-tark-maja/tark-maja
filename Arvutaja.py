@@ -84,10 +84,8 @@ def splitPrices():
         return cheap_times, expensive_times
 
 #lugeda failist elektriandmes
-f = open("elektriandmed.txt","r")
+f = open("../elektriandmed.txt","r")
 fixed = (str((f.readline().rstrip())))
-print(fixed)
-print(fixed)
 if(fixed == "fikseeritud"):
     daylightSavingTime = daylightSavingsTime()
     timeOfWeek()
@@ -127,41 +125,88 @@ else:
     splitPrices()
 
 #kasutaja sisestatud tingimused
-how_many_minutes_in = 1500
-how_many_minutes_out = 1600
+#loeb sisse kõik tingimused
+t = open("tingimused.txt","r")
+how_many_minutes_in = int(t.readline())
+how_many_minutes_out = int(t.readline())
 
-how_many_minutes_in_at_once = 20
-how_many_minutes_out_at_once = 30
+how_many_minutes_in_at_once = int(t.readline())
+how_many_minutes_out_at_once = int(t.readline())
 
-which_timeperiod_in_starts1 = datetime.datetime(2015, 9, 12, 10, 9, 45)
-which_timeperiod_in_ends1 = datetime.datetime(2015, 9, 12, 12, 12, 10)
+max_electicity_consumption = int(t.readline())
+min_electicity_consumption = int(t.readline())
 
-which_timeperiod_in_starts2 = datetime.datetime(2015, 9, 12, 13, 9, 45)
-which_timeperiod_in_ends2 = datetime.datetime(2015, 9, 12, 14, 12, 10)
+tomorrownight = datetime.datetime.now() + timedelta(hours=10)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_in_starts1 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_in_ends1 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_in_starts2 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_in_ends2 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_in_starts3 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_in_ends3 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_in_starts4 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_in_ends4 = tomorrownight + timedelta(hours=h, minutes=m)
 
-which_timeperiod_in_starts3 = datetime.datetime(2015, 9, 12, 14, 20, 0)
-which_timeperiod_in_ends3 = datetime.datetime(2015, 9, 12, 14, 50, 0)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_out_starts1 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_out_ends1 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_out_starts2 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_out_ends2 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_out_starts3 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_out_ends3 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_out_starts4 = tomorrownight + timedelta(hours=h, minutes=m)
+h, m = t.readline().split(':')
+h=int(h)
+m=int(m)
+which_timeperiod_out_ends4 = tomorrownight + timedelta(hours=h, minutes=m)
 
-which_timeperiod_in_starts4 = datetime.datetime(2015, 9, 12, 15, 9, 0)
-which_timeperiod_in_ends4 = datetime.datetime(2015, 9, 12, 16, 12, 0)
-
-which_timeperiod_out_starts1 = datetime.datetime(2015, 9, 12, 17, 0, 0)
-which_timeperiod_out_ends1 = datetime.datetime(2015, 9, 12, 17, 30, 0)
-
-which_timeperiod_out_starts2 = datetime.datetime(2015, 9, 12, 18, 9, 45)
-which_timeperiod_out_ends2 = datetime.datetime(2015, 9, 12, 20, 9, 45)
-
-which_timeperiod_out_starts3 = datetime.datetime(2015, 9, 12, 21, 9, 45)
-which_timeperiod_out_ends3 = datetime.datetime(2015, 9, 12, 22, 9, 45)
-
-which_timeperiod_out_starts4 = datetime.datetime(2015, 9, 12, 0, 0, 0)
-which_timeperiod_out_ends4 = datetime.datetime(2015, 9, 12, 0, 0, 0)
-
-
-max_electicity_consumption = 20
-min_electicity_consumption = 10
-
-appliance = 850
+t.close()
+a = open("seadme_andmed.txt","r")
+name = a.readline()
+appliance = int(a.readline())
 
 def convert_min_to_hour(minutes):
     return minutes/60
@@ -206,7 +251,6 @@ def place_missing_times_to_plan(available_times, cheap_times, expensive_times, h
             cheap_times[x]=datetime.datetime.strptime(cheap_times[x] , "%Y-%m-%d %H:%M:%S")
             turn_on_at.append(cheap_times[x])
             turn_off_at.append(cheap_times[x] + timedelta(hours=hours_needed * 1.66666666667))
-            print('UGPIGPGPGGIGÖ')
         else:
             expensive_times[x]=datetime.datetime.strptime(cheap_times[x] , "%Y-%m-%d %H:%M:%S")
             turn_on_at.append(expensive_times[x])
