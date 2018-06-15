@@ -14,8 +14,13 @@
 			<li><a href="seadmed.php">Seadmed</a></li>
         </ul>
     </nav>
+    <div class="banner">
+        <img class="banner-image" src="4.png">
+    </div><hr>
+
+    <h1>Seadme logi</h1>
+
 	<div class="container">  
-        <h1>Seadme logi</h1>
 		<?php
 		$myfile = fopen("logfile.txt", "r") or die("ei saa avada faili!");
 		while(!feof($myfile)) {
