@@ -3,7 +3,16 @@ import datetime
 import urllib.request, json
 import os
 from datetime import date, timedelta
+
+#modules for graphs
 import matplotlib.pyplot as plt
+import plotly
+import plotly.plotly as py
+import plotly.graph_objs as go
+import numpy as np
+import pylab as plt
+import matplotlib.patches as mpatches
+
 today = str(date.today())
 yesterday = str(date.today() - timedelta(1))
 #print(yesterday)
@@ -39,6 +48,7 @@ with urllib.request.urlopen(text+yesterday1+text2+tomorrow1) as url:
 
 
 def splitPrices():
+    #function that splits prices into cheap and expensive lists according to average
     cheapPricesList = []
     expensivePricesList = []
     total_sum = 0
@@ -93,13 +103,14 @@ def visulize_timedata():
             time.append(timeB)
             
 
-        for line in workingTimes:
+        for line in workingTimes:                
             #taking the times from workingtimes.txt and adding them to the table as dots
             timeB2 = datetime.datetime.strptime(line.strip() , "%Y-%m-%d %H:%M:%S")
             f, g = line.split(' ')
             timeG = g #g - taking the times from working times
             #workingtimes.append(timeG)
             workingtimes.append(timeB2)
+            print(timeG)
             
         for line in notWorkingTimes:
             #taking the times from notworkingtimes.txt and adding them to the table as dots
@@ -107,6 +118,7 @@ def visulize_timedata():
             h, i = line.split(' ')
             timeI = i #i - taking the times from not working times
             notworkingtimes.append(timeB3)
+            print(timeI)
 
     workline = [55 for aeg in workingtimes]
     endline = [55 for aeg in workingtimes]
@@ -124,4 +136,5 @@ def visulize_timedata():
     plt.show()
     
 visulize_timedata()
+
 
