@@ -21,40 +21,47 @@
         <div class="header-uks">
           <h2>Seadmed</h2>
 		  <?php
+		 foreach (scandir('users/') as $dir){
+			echo "<a href=users/$dir>$dir</a>" . "<br>";
+		}
 		if(isset($_POST['seadme_nimetus']) && isset($_POST['seadme_voimsus'])) {
-			$data = $_POST['seadme_nimetus'] . ' - ' . $_POST['seadme_voimsus'] ."W"."\n";
-			$ret = file_put_contents('seadmed.txt', $data, FILE_APPEND | LOCK_EX);
-		}
-
-		$myfile = fopen("seadmed.txt", "r") or die("ei saa avada faili!");
-				while(!feof($myfile)) {
-				echo fgets($myfile) . "<br>";
-				}
-				fclose($myfile);
-				
-		// change the name below for the folder you want
-		$dir = "new_folder_name";
-
-		$file_to_write = 'test.txt';
-		$content_to_write = "The content";
-
-		if( is_dir($dir) === false )
+			$dir = $_POST['seadme_nimetus'];
+			$power = $_POST['seadme_voimsus'];
+			$file_to_write1 = "logfile.txt";
+			$file_to_write2 = "tingimused.txt";
+			$file_to_write3 = "WorkingTimes.txt";
+			$file_to_write4 = "TurnOffTimes.txt";
+			$file_to_write5 = "todaydata.txt";
+			$file_to_write6 = "seadme_info.txt";
+			
+			
+			
+			if( is_dir($dir) === false )
 		{
-			mkdir($dir);
+			mkdir('users/'. $dir);
+			$file1 = fopen('users/'.$dir. '/' .$file_to_write1, "w");
+			$file2 = fopen('users/'.$dir. '/' .$file_to_write2, "w");
+			$file3 = fopen('users/'.$dir. '/' .$file_to_write3, "w");
+			$file4 = fopen('users/'.$dir. '/' .$file_to_write4, "w");
+			$file5 = fopen('users/'.$dir. '/' .$file_to_write5, "w");
+			$file6 = fopen('users/'.$dir. '/' .$file_to_write6, "w");
+			fwrite($file1, "");
+			fwrite($file2, "");
+			fwrite($file3, "");
+			fwrite($file4, "");
+			fwrite($file5, "");
+			fwrite($file6, "Seadme nimetus:". $dir ."\n Seadme võimsus:". $power);
+			chmod('users/' . $dir. '/' .$file_to_write1, 0777);
+			chmod('users/' . $dir . '/' . $file_to_write2, 0777);
+			chmod('users/' . $dir, 0777);
+			echo "<a href='$dir'>$dir</a>";
+}
+			
 		}
-
-		$file = fopen($dir . '/' . $file_to_write,"w");
-
-		// a different way to write content into
-		// fwrite($file,"Hello World.");
-
-		fwrite($file, $content_to_write);
-
-		// closes the file
-		fclose($file);
-
-		// this will show the created file from the created folder on screen
-		include $dir . '/' . $file_to_write;
+		
+			
+		
+				
 		?>
         </div>
 
@@ -84,6 +91,7 @@
     </form>
 </body>
 </html>
+
 
 
 
