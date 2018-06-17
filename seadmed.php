@@ -24,6 +24,7 @@
 		 foreach (scandir('users/') as $dir){
 			echo "<a href=users/$dir>$dir</a>" . "<br>";
 		}
+		echo "<a href='./' style='display:none;' >.</a>";
 		if(isset($_POST['seadme_nimetus']) && isset($_POST['seadme_voimsus'])) {
 			$dir = $_POST['seadme_nimetus'];
 			$power = $_POST['seadme_voimsus'];
@@ -39,12 +40,16 @@
 			if( is_dir($dir) === false )
 		{
 			mkdir('users/'. $dir);
+			mkdir('users/'. $dir . '/design');
 			$file1 = fopen('users/'.$dir. '/' .$file_to_write1, "w");
 			$file2 = fopen('users/'.$dir. '/' .$file_to_write2, "w");
 			$file3 = fopen('users/'.$dir. '/' .$file_to_write3, "w");
 			$file4 = fopen('users/'.$dir. '/' .$file_to_write4, "w");
 			$file5 = fopen('users/'.$dir. '/' .$file_to_write5, "w");
 			$file6 = fopen('users/'.$dir. '/' .$file_to_write6, "w");
+			copy("Arvutaja.py", "users/$dir/Arvutaja.py");
+			copy("tingimused.html", "users/$dir/index.html");
+			copy("design/style.css", "users/$dir/design/style.css");
 			fwrite($file1, "");
 			fwrite($file2, "");
 			fwrite($file3, "");
@@ -54,7 +59,12 @@
 			chmod('users/' . $dir. '/' .$file_to_write1, 0777);
 			chmod('users/' . $dir . '/' . $file_to_write2, 0777);
 			chmod('users/' . $dir, 0777);
-			echo "<a href='$dir'>$dir</a>";
+			chmod('users/' . $dir. '/' .$file_to_write3, 0777);
+			chmod('users/' . $dir. '/' .$file_to_write4, 0777);
+			chmod('users/' . $dir. '/' .$file_to_write5, 0777);
+			chmod('users/' . $dir. '/' .$file_to_write6, 0777);
+			
+			echo "<a href='users/$dir'>$dir</a>";
 }
 			
 		}
@@ -91,6 +101,8 @@
     </form>
 </body>
 </html>
+
+
 
 
 
