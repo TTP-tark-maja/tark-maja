@@ -25,9 +25,10 @@
     <div class="main-grid">
         <div class="header-uks">
           <h2>Seadmed</h2>
-		  <?php
+          <?php
+          
 		 foreach (scandir('users/') as $dir){
-			echo "<a href=users/$dir>$dir</a>" . "<br>";
+			echo "<a class='btn' href=users/$dir>$dir</a>" . "<br>";
 		}
 		echo "<a href='./' style='display:none;' >.</a>";
 		if(isset($_POST['seadme_nimetus']) && isset($_POST['seadme_voimsus'])) {
@@ -54,7 +55,8 @@
 			$file6 = fopen('users/'.$dir. '/' .$file_to_write6, "w");
 			copy("Arvutaja.py", "users/$dir/Arvutaja.py");
 			copy("tingimused.html", "users/$dir/index.html");
-			copy("design/style.css", "users/$dir/design/style.css");
+            copy("design/style.css", "users/$dir/design/style.css");
+            copy("4.JPG", "users/$dir/4.JPG");
 			fwrite($file1, "");
 			fwrite($file2, "");
 			fwrite($file3, "");
@@ -73,8 +75,6 @@
 }
 			
 		}
-		
-			
 		
 				
 		?>
@@ -106,9 +106,3 @@
     </form>
 </body>
 </html>
-
-
-
-
-
-
