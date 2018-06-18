@@ -88,21 +88,25 @@ def visulize_timedata():
     workingtimes = []
     notworkingtimes = []
     annotation = []
-    with open('todaydata.txt', 'r') as pricesList, open('workingtimes.txt','r') as workingTimes, open('notworkingtimes.txt','r') as notWorkingTimes:
-        for line in pricesList:
-            #taking the times and prices from todaydata.txt and making a linegraph
-            a, b, c = line.split('"')
-            priceA = float(a) #a - taking the prices from todays data
-            timeB = b #b - taking the dates from todays data
-            timeB = timeB.replace("T", " ")
-            timeB = datetime.datetime.strptime(timeB , "%Y-%m-%d %H:%M:%S")
-            d, e = str(timeB).split(" ")
-            
-            price.append(priceA)                                               
-            #time.append(e)
-            time.append(timeB)
-            
-
+    with open('todaydata.txt', 'r') as pricesList, open('WorkingTimes.txt','r') as workingTimes, open('WorkingOfftimes.txt','r') as notWorkingTimes, open('clientData.txt','r') as fixedPriceslist:
+        if(fixedPricesList.readlines() == "Fikseeritud"):
+            for line in fixedPricesList:
+                fprices = fixedPricesList.readlines()
+                print(fprices)
+                
+        else:
+            for line in pricesList:
+                #taking the times and prices from todaydata.txt and making a linegraph
+                a, b, c = line.split('"')
+                priceA = float(a) #a - taking the prices from todays data
+                timeB = b #b - taking the dates from todays data
+                timeB = timeB.replace("T", " ")
+                timeB = datetime.datetime.strptime(timeB , "%Y-%m-%d %H:%M:%S")
+                d, e = str(timeB).split(" ")
+                        
+                price.append(priceA)                                               
+                time.append(timeB)            		
+			
         for line in workingTimes:                
             #taking the times from workingtimes.txt and adding them to the table as dots
             timeB2 = datetime.datetime.strptime(line.strip() , "%Y-%m-%d %H:%M:%S")
@@ -110,7 +114,6 @@ def visulize_timedata():
             timeG = g #g - taking the times from working times
             #workingtimes.append(timeG)
             workingtimes.append(timeB2)
-            print(timeG)
             
         for line in notWorkingTimes:
             #taking the times from notworkingtimes.txt and adding them to the table as dots
@@ -118,23 +121,40 @@ def visulize_timedata():
             h, i = line.split(' ')
             timeI = i #i - taking the times from not working times
             notworkingtimes.append(timeB3)
-            print(timeI)
 
-    workline = [55 for aeg in workingtimes]
-    endline = [55 for aeg in workingtimes]
-    red_patch = mpatches.Patch(color='red', label='Device ended working')
-    green_patch = mpatches.Patch(color='green', label='Device started working')
+    workline = [45 for aeg in workingtimes]										#ajagraafiku osa
+    endline = [45 for aeg in workingtimes]										#ajakraafiku osa
+    red_patch = mpatches.Patch(color='red', label='Device ended working')		#legend
+    green_patch = mpatches.Patch(color='green', label='Device started working')	#legend
     
     plt.plot(time, price)
-    plt.scatter(workingtimes, workline, color='green')
-    plt.scatter(notworkingtimes, endline, color='red')
+    plt.scatter(workingtimes, workline, color='green') 							#ajakraafiku osa
+    plt.scatter(notworkingtimes, endline, color='red') 							#ajakraafiku osa	
     plt.xlabel("time(date, hour)")
     plt.ylabel("Electricity price(€/MWh)")
     plt.title("Today's electricity prices(24h), includes device's Working timetable")
     plt.gcf().autofmt_xdate()
-    plt.legend(handles=[green_patch, red_patch])
-    plt.show()
+    plt.legend(handles=[green_patch, red_patch])								#legend
+    savefig('24h.png')															#pilt
+    #plt.show()
     
 visulize_timedata()
 
+
+def visulize_timedata_fixed():
+    fixedPrices = []
+    time = []
+    with open('clientData.txt','r') as fixedPriceslist, open('todaydata.txt', 'r') as pricesList:	         
+        for line in pricesList:                    #taking the times from todaydata.txt
+            a, b, c = line.split('"')
+            timeB = b #b - taking the dates from todays data
+            timeB = timeB.replace("T", " ")
+            timeB = datetime.datetime.strptime(timeB , "%Y-%m-%d %H:%M:%S")
+            d, e = str(timeB).split(" ")			
+            time.append(timeB)            
+
+        for line in fixedPriceslist:
+            lines = fixedPricesList.readlines()
+            fPrice = float(lines) #a - taking the prices from clientData.txt					
+            price.append(fPrice)                                                         	
 

@@ -21,16 +21,16 @@
         <h1>Paketi informatsioon</h1>
         <br>
     <div class="container">   
-        <form class="pakett">
+        <form class="pakett"  action="pakett.php" method="GET">
 		<script src="pakett.js"></script>
             <legend>Fikseeritud hind või fikseerimata hind?</legend>
 			<br>
             <label class="radiobtn">Fikseeritud
-                <input id="1" type="radio" name="price" value="fikseeritud" onclick="textAll()">
+                <input id="1" type="radio" name="price1" value="fikseeritud" onclick="textAll()">
                 <span class="checkmark"></span>
             </label><br>
             <label class="radiobtn">Fikseerimata
-                <input id="2" type="radio" name="price" value="fikseerimata" onclick="textHide()">
+                <input id="2" type="radio" name="price2" value="fikseerimata" onclick="textHide()">
                 <span class="checkmark"></span><br>
             </label>
 			<p id="text1" style="display:none">
@@ -50,9 +50,8 @@
                 <input type="number" name="sellerprice" value="muujamarginaal"><br>
             <br>
             <div class="button">
-                <input type="button" value="SALVESTA">
+                <input type="submit" name="submit" value="SALVESTA">
             </div>
-		
         </form>
     </div>        
 </body>
