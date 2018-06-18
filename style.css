@@ -256,24 +256,21 @@ input[type=radio] {
     grid-row: row 2;
 }
 
-.seade {
-    margin: 26px;
+
+a.btn {
+    margin: 5px;
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color:white;
-}
-
-.seade a {
     display: block;
     text-decoration: none;
     font-size: 11px;
     font-family: "Verdana";
     color: black;
-    padding: 0px 20px;
 }
 
-.seade a:hover {
+a.btn:hover {
     color: #0b89f0;
 }
 
