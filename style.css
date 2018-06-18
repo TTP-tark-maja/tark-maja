@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: #e7eff8;
+    background-color: #0b89f02a;
     text-align: center;
 }
 
@@ -29,7 +29,7 @@ ul li a {
 }
 
 ul li a:hover {
-    color: rgb(11, 137, 240);
+    color: #0b89f0;
 }
 
 .banner {
@@ -53,7 +53,7 @@ nav {
 }
 
 hr{
-    border-color: rgb(11, 137, 240);
+    border-color: #0b89f0;
 }
 
 .container {
@@ -135,7 +135,7 @@ legend {
 }
 
 .radiobtn input:checked ~ .checkmark {
-    background-color:rgb(11, 137, 240);
+    background-color:#0b89f0;
 }
 
 .checkmark:after {
@@ -159,12 +159,13 @@ legend {
 
 input[type=button] {
     text-align: center;
+    text-transform: uppercase;
     font-size: 10px;
     letter-spacing: 2px;
     border: none;
     padding: 10px 50px;
     color: white;
-    background-color: rgb(11, 137, 240);
+    background-color: #0b89f0;
     border-radius: 4px; 
     transition-duration: 0.4s;
 }
@@ -205,7 +206,7 @@ input[type=radio] {
     font-family: "Verdana";
 }
 
-/*seadmed.html css*/
+/*koduleht.php css*/
 .main-grid {
     display: inline-grid;
     margin: 30px;
@@ -261,5 +262,55 @@ input[type=radio] {
 }
 
 .seade a:hover {
-    color: rgb(11, 137, 240);
+    color: #0b89f0;
 }
+
+/*seadme sisse-välja nupp*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 26px;
+  }
+  
+  .switch input {display:none;}
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 34px;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 7px;
+    bottom: 3px;
+    border-radius: 50%;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #0b89f0;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #0b89f0;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(28px);
+  }
