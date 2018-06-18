@@ -1,7 +1,9 @@
 <?php 
 $style = "";
 $pic = "";
+$dir = echo basename(dirname(__FILE__));
 if(isset($_POST['submit'])){
+    echo shell_exec("python3.5 /var/www/html/users/$dir/Arvutaja.py");
     if(file_exists("24h.png")){
         $style = "style = 'display:none;'";
         $pic = '<img src="24h.png"></img>';
