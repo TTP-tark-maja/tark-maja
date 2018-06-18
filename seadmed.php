@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Tark Maja</title>
+    <link rel="icon" type="image/png" href="M.png">
     <link rel="stylesheet" type="text/css" href="design/style.css">
 </head>
 <body>
@@ -14,7 +15,11 @@
 			<li><a href="seadmed.php">Seadmed</a></li>
         </ul>
     </nav>
-    
+
+    <div class="banner">
+        <img class="banner-image" src="4.JPG">
+     </div><hr>
+	
     <h1>seadmed</h1>
         <br>  
     <div class="main-grid">
