@@ -44,11 +44,12 @@
                             }
                     }
                 ?> 
-        <div class="button">
-            <input type="button" value="kuva kogu logi">
-        </div> 
-    
-    </div>
-    
+        <form method="POST">
+		   <div class="submit">
+		   <br>
+                <input type="submit" value="KUVA KOGU LOGI" name="kogulogi" id="1">
+           </div> 
+        </form>
+    </div> 
 </body>
 </html>
