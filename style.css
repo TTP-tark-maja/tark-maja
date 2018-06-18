@@ -40,7 +40,6 @@ ul li a:hover {
 .banner img {
     width: 100%;
     display: block;
-    filter: grayscale(90%);
 }
 
 nav {
@@ -158,6 +157,19 @@ legend {
 }
 
 input[type=button] {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 2px;
+    border: none;
+    padding: 10px 50px;
+    color: white;
+    background-color: #0b89f0;
+    border-radius: 4px; 
+    transition-duration: 0.4s;
+}
+
+input[type=submit] {
     text-align: center;
     text-transform: uppercase;
     font-size: 10px;
