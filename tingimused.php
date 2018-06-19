@@ -77,7 +77,9 @@ if(isset($_POST['submit'])){
                 <input type="time" name="mittetooaeg6"><br>
                 <input type="time" name="mittetooaeg7">
                 <input type="time" name="mittetooaeg8"><br>
-				<input type="submit" name="submit" value="Salvesta">
+				<div class="submit">
+					<input type="submit" name="submit" value="Salvesta">
+				</div>
             </form>
         </div>
 </body>

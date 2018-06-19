@@ -28,7 +28,7 @@
           <?php
           
 		 foreach (scandir('users/') as $dir){
-			echo "<a class='btn' href=users/$dir>$dir</a>" . "<br>";
+			echo "<a class='btn' href=users/$dir/index.php>$dir</a>" . "<br>";
 		}
 		echo "<a href='./' style='display:none;' >.</a>";
 		if(isset($_POST['seadme_nimetus']) && isset($_POST['seadme_voimsus'])) {
@@ -54,7 +54,7 @@
 			$file5 = fopen('users/'.$dir. '/' .$file_to_write5, "w");
 			$file6 = fopen('users/'.$dir. '/' .$file_to_write6, "w");
 			copy("Arvutaja.py", "users/$dir/Arvutaja.py");
-			copy("tingimused.php", "users/$dir/index.html");
+			copy("tingimused.php", "users/$dir/index.php");
             copy("design/style.css", "users/$dir/design/style.css");
             copy("4.JPG", "users/$dir/4.JPG");
 			fwrite($file1, "");
@@ -70,7 +70,7 @@
 			chmod('users/' . $dir. '/' .$file_to_write4, 0777);
 			chmod('users/' . $dir. '/' .$file_to_write5, 0777);
 			chmod('users/' . $dir. '/' .$file_to_write6, 0777);
-			chmod('users/' . $dir. '/index.html', 0777);
+			chmod('users/' . $dir. '/index.php', 0777);
 			chmod('users/' . $dir. '/Arvutaja.py', 0777);
 			chmod('users/' . $dir. '/design', 0777);
 			chmod('users/' . $dir. '/design/style.css', 0777);
