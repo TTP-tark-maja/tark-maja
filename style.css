@@ -196,6 +196,12 @@ input[type=submit] {
     transition-duration: 0.4s;
 }
 
+input[type=submit]:hover {
+    background-color: rgb(214, 227, 245);
+    color: black;
+}
+
+
 input[type=number] {
     padding: 5px 20px;
     margin-top: 8px;
