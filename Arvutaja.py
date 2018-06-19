@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime, timedelta, date
 import urllib.request, json
 import os
@@ -14,7 +15,7 @@ import numpy as np
 import pylab as plt
 import matplotlib.patches as mpatches
 
-#kas suveaeg või talveaeg
+#kas suveaeg v6i talveaeg
 NumberOfHooursUse = 0
 NumberOfDaysUse = 0
 WattsUsed = 0
@@ -45,10 +46,10 @@ yesterday = date.today() - datetime.timedelta(1)
 yesterday1 = yesterday.strftime('%Y-%m-%d')
 text = 'https://dashboard.elering.ee/api/nps/price?start='
 text2 = '&end='
-#Päringu saime https://dashboard.elering.ee/documentation.html lehelt.
+#P2ringu saime https://dashboard.elering.ee/documentation.html lehelt.
 with urllib.request.urlopen(text+yesterday1+text2+tomorrow1) as url:
     #print(text+yesterday1+text2+tomorrow1)
-    #võtab eleringist stringina tänased hinnad
+    #v6tab eleringist stringina t2nased hinnad
     jsonstring = json.loads(url.read().decode())
     data =(jsonstring['data'])
     eesti = data['ee']
@@ -92,7 +93,7 @@ def splitPrices():
         return cheap_times, expensive_times
 
 #lugeda failist elektriandmes
-f = open("../../clientData.txt","r")
+f = open("clientData.txt","r")
 fixed = (str((f.readline().rstrip())))
 if(fixed == "fikseeritud"):
     daylightSavingTime = daylightSavingsTime()
@@ -472,57 +473,63 @@ def visulize_timedata():
 
 
 def visulize_timedata_fixed():
-    
     #lists of times for different times
-    price = []
-    summertimeweekday = [9, 24]
-    summertimeweeknight = [1, 8]
-    summertimeweekend = [1, 24]
-    wintertimeweekday = [8, 24]
-    wintertimeweeknight = [1, 7]
-    wintertimeweekend = [1, 24]
-    i = 0
-    
-    with open('clientData.txt','r') as fixedPriceslist, open('todaydata.txt','r') as pricesList:        
-        for line in pricesList:     #taking the times from todaydata.txt
-           a, b, c = line.split('"')
+    weekdayprice = ["night","night","day","day","night"]
+    weekendprice = ["price","price","price","price","price"]
+    summertimeweekday = [00.00, 08.00, 08.00, 24.00, 24.00]    
+    summertimeweekend = [00.00, 08.00, 08.00, 24.00, 24.00]
+    wintertimeweekday = [00.00, 07.00, 07.00, 23.00, 23.00]
+    wintertimeweekend = [00.00, 07.00, 07.00, 23.00, 23.00]             
+    with open('clientData.txt','r') as fixedPriceslist:
+        
+        #for line in pricesList:     #taking the times from todaydata.txt
+         #  a, b, c = line.split('"')
            
-           if i in pricesList:
-               timeB = b #b - taking the dates from todays data
-               timeB = timeB.replace("T", " ")
-               timeB = datetime.datetime.strptime(timeB , "%Y-%m-%d %H:%M:%S")
-               d, e = str(timeB).split(" ")			
-               time.append(timeB)               
+          # if i in pricesList:
+           #    timeB = b #b - taking the dates from todays data
+            #   timeB = timeB.replace("T", " ")
+             #  timeB = datetime.datetime.strptime(timeB , "%Y-%m-%d %H:%M:%S")
+              # d, e = str(timeB).split(" ")			
+               #time.append(timeB)               
 
         for line in fixedPriceslist:
+            priceday, pricenight = line.split("\n")
+            print(priceday)
             lines = fixedPriceslist.readlines()
             fPrice = lines #a - taking the prices from clientData.txt					
-            price.append(fPrice)
-           
-    print(time)
-    print(price)
-    kell=[0, 8, 8, 24, 24]
-    korgus=[1, 1, 2, 2, 1]
-    plt.figure()
-    plt.scatter(kell, korgus)
-    plt.plot(kell, korgus)
-    #plt.plot(time, price)	
+            #price.append(fPrice)
+            if(daylightSavingsTime() == "summer" and timeOfWeek() == "Weekday"):
+                plt.figure()
+                plt.scatter(summertimeweekday, weekdayprice)
+                plt.plot(summertimeweekday, weekdayprice)	 
+            elif(daylightSavingsTime() == "summer" and timeOfWeek() == "Weekend"):
+                plt.figure()
+                plt.scatter(summertimeweekend, weekendprice)
+                plt.plot(summertimeweekend, weekendprice)
+            elif(daylightSavingsTime() == "winter" and timeOfWeek() == "Weekday"):
+                plt.figure()
+                plt.scatter(wintertimeweekday, weekdayprice)
+                plt.plot(wintertimeweekday, weekdayprice)
+            elif(daylightSavingsTime() == "winter" and timeOfWeek() == "Weekend"):
+                plt.figure()
+                plt.scatter(wintertimeweekend, weekendprice)
+                plt.plot(wintertimeweekend, weekendprice)
+            else:
+                print("broken")
+        
     plt.xlabel("time(date, hour)")
     plt.ylabel("Electricity price(€/MWh)")
     plt.title("Today's electricity prices(24h), includes device's Working timetable")
-   # plt.gcf().autofmt_xdate()
-    plt.show()
-    #plt.savefig('24h.png')
+    plt.savefig('24h.png')
+    
 
 
 def chooseGraph():
     with open('clientData.txt','r') as fixedPriceslist:
         for line in fixedPriceslist:
-            if(fixedPriceslist.readline()=="Fikseeritud"):
+            if(fixedPriceslist.readline()=="fikseeritud"):
                 visulize_timedata()
             else:
                 visulize_timedata_fixed()
             
 chooseGraph()
-
-
