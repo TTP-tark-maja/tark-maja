@@ -22,8 +22,12 @@
           <h2>Seadmed</h2>
 		  <?php
 		 foreach (scandir('users/') as $dir){
-			echo "<a href=users/$dir>$dir</a>" . "<br>";
-		}
+			 if($dir == '.' || $dir == '..'){
+			}
+			else{
+				echo "<a href=users/$dir>$dir</a><br>";
+			}
+		 }
 		echo "<a href='./' style='display:none;' >.</a>";
 		if($_SERVER["REQUEST_METHOD"] == "POST"){
 			if(isset($_POST['seadme_nimetus']) && isset($_POST['seadme_voimsus'])) {
