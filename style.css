@@ -156,11 +156,11 @@ legend {
    background: white;
 }
 
-.delete input[type=button] {
+.delete input[type=submit] {
     background-color: red;
 }
 
-.delete input[type=button]:hover {
+.delete input[type=submit]:hover {
     background-color: rgb(180, 4, 19);
     color: white;
 }
