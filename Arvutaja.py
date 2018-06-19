@@ -142,7 +142,7 @@ else:
 
 #kasutaja sisestatud tingimused
 #loeb sisse kõik tingimused
-t = open("tingimused.txt","r")
+t = open("userconditions.txt","r")
 how_many_minutes_in = int(t.readline())
 how_many_minutes_out = int(t.readline())
 
@@ -406,7 +406,7 @@ if(check_final(check1, check2, check3, check4, check5, check6, check7, check8, c
         text_file1.close()
         text_file2.close()
 #teeme visuaalse graafiku
-def visulize_timedata():
+def visulize_timedata(fixed_or_not, cheap_times, expensive_times, day_price, night_price):
     #function that visulizes todays data as a linegraph
     #must install Matplotlib
     price = []
@@ -414,20 +414,24 @@ def visulize_timedata():
     workingtimes = []
     notworkingtimes = []
     annotation = []
-    with open('todaydata.txt', 'r') as pricesList, open('WorkingTimes.txt','r') as workingTimes, open('TurnOfftimes.txt','r') as notWorkingTimes:
-        for line in pricesList:
-            #taking the times and prices from todaydata.txt and making a linegraph
-            a, b, c = line.split('"')
-            priceA = float(a) #a - taking the prices from todays data
-            timeB = b #b - taking the dates from todays data
-            timeB = timeB.replace("T", " ")
-            timeB = datetime.datetime.strptime(timeB , "%Y-%m-%d %H:%M:%S")
-            d, e = str(timeB).split(" ")
-            
-            price.append(priceA)                                               
-            #time.append(e)
-            time.append(timeB)
-            
+    if(fixed_or_not == 'fikseeritud'):
+        price.append(priceA)                                               
+        time.append(timeB)
+    else:
+        with open('todaydata.txt', 'r') as pricesList, open('WorkingTimes.txt','r') as workingTimes, open('TurnOfftimes.txt','r') as notWorkingTimes:
+            for line in pricesList:
+                #taking the times and prices from todaydata.txt and making a linegraph
+                a, b, c = line.split('"')
+                priceA = float(a) #a - taking the prices from todays data
+                timeB = b #b - taking the dates from todays data
+                timeB = timeB.replace("T", " ")
+                timeB = datetime.datetime.strptime(timeB , "%Y-%m-%d %H:%M:%S")
+                d, e = str(timeB).split(" ")
+                
+                price.append(priceA)                                               
+                #time.append(e)
+                time.append(timeB)
+                
         indexx=1
         for line in workingTimes:
             #taking the times from workingtimes.txt and adding them to the table as dots
