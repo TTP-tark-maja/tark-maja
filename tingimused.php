@@ -24,10 +24,10 @@ if(isset($_POST['submit'])){
 <body>     
     <nav>
         <ul>
-            <li><a href="koduleht.php">Avaleht</a></li>
-            <li><a href="paketiinfo.html">Paketi informatsioon</a></li>
-            <li><a href="seadmed.php">Seadmed</a></li>
-            <li><a href="tingimused.html">Seadme tingimused</a></li>
+            <li><a href="../../koduleht.php">Avaleht</a></li>
+            <li><a href="../../paketiinfo.html">Paketi informatsioon</a></li>
+            <li><a href="../../seadmed.php">Seadmed</a></li>
+            <li><a href="../../tingimused.html">Seadme tingimused</a></li>
         </ul>
     </nav>
     
