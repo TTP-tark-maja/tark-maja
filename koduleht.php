@@ -35,7 +35,7 @@
 			$dir = $_POST['seadme_nimetus'];
 			$power = $_POST['seadme_voimsus'];
 			$file_to_write1 = "logfile.txt";
-			$file_to_write2 = "tingimused.txt";
+			$file_to_write2 = "userconditions.txt";
 			$file_to_write3 = "WorkingTimes.txt";
 			$file_to_write4 = "TurnOffTimes.txt";
 			$file_to_write5 = "todaydata.txt";
@@ -54,7 +54,7 @@
 			$file5 = fopen('users/'.$dir. '/' .$file_to_write5, "w");
 			$file6 = fopen('users/'.$dir. '/' .$file_to_write6, "w");
 			copy("Arvutaja.py", "users/$dir/Arvutaja.py");
-			copy("tingimused.html", "users/$dir/index.html");
+			copy("tingimused.php", "users/$dir/index.html");
             copy("design/style.css", "users/$dir/design/style.css");
             copy("4.JPG", "users/$dir/4.JPG");
 			fwrite($file1, "");
@@ -62,7 +62,7 @@
 			fwrite($file3, "");
 			fwrite($file4, "");
 			fwrite($file5, "");
-			fwrite($file6, "Seadme nimetus:". $dir ."\n Seadme võimsus:". $power);
+			fwrite($file6, "\n" .$power);
 			chmod('users/' . $dir. '/' .$file_to_write1, 0777);
 			chmod('users/' . $dir . '/' . $file_to_write2, 0777);
 			chmod('users/' . $dir, 0777);
@@ -70,6 +70,11 @@
 			chmod('users/' . $dir. '/' .$file_to_write4, 0777);
 			chmod('users/' . $dir. '/' .$file_to_write5, 0777);
 			chmod('users/' . $dir. '/' .$file_to_write6, 0777);
+			chmod('users/' . $dir. '/index.html', 0777);
+			chmod('users/' . $dir. '/Arvutaja.py', 0777);
+			chmod('users/' . $dir. '/design', 0777);
+			chmod('users/' . $dir. '/design/style.css', 0777);
+			chmod('users/' . $dir. '/4.JPG', 0777);
 			
 			echo "<a href='users/$dir'>$dir</a>";
 }
