@@ -10,9 +10,7 @@
     <nav>
         <ul>
             <li><a href="koduleht.php">Home</a></li>
-            <li><a href="paketiinfo.html">Paketi informatsioon</a></li>
-            <li><a href="tingimused.html">Seadme tingimused</a></li>
-			<li><a href="seadmed.php">Seadmed</a></li>
+            <li><a href="paketiinfo.php">Paketi informatsioon</a></li>
         </ul>
     </nav>
 
@@ -28,7 +26,7 @@
           <?php
           
 		 foreach (scandir('users/') as $dir){
-			echo "<a class='btn' href=users/$dir/index.php>$dir</a>" . "<br>";
+			echo "<a class='btn' href=users/$dir/seadmed.php>$dir</a>" . "<br>";
 		}
 		echo "<a href='./' style='display:none;' >.</a>";
 		if(isset($_POST['seadme_nimetus']) && isset($_POST['seadme_voimsus'])) {
@@ -54,7 +52,8 @@
 			$file5 = fopen('users/'.$dir. '/' .$file_to_write5, "w");
 			$file6 = fopen('users/'.$dir. '/' .$file_to_write6, "w");
 			copy("Arvutaja.py", "users/$dir/Arvutaja.py");
-			copy("tingimused.php", "users/$dir/index.php");
+			copy("seadmed.php", "users/$dir/seadmed.php");
+			copy("tingimused.php", "users/$dir/tingimused.php");
             copy("design/style.css", "users/$dir/design/style.css");
             copy("4.JPG", "users/$dir/4.JPG");
 			fwrite($file1, "");
@@ -70,13 +69,14 @@
 			chmod('users/' . $dir. '/' .$file_to_write4, 0777);
 			chmod('users/' . $dir. '/' .$file_to_write5, 0777);
 			chmod('users/' . $dir. '/' .$file_to_write6, 0777);
-			chmod('users/' . $dir. '/index.php', 0777);
+			chmod('users/' . $dir. '/seadmed.php', 0777);
+			chmod('users/' . $dir. '/tingimused.php', 0777);
 			chmod('users/' . $dir. '/Arvutaja.py', 0777);
 			chmod('users/' . $dir. '/design', 0777);
 			chmod('users/' . $dir. '/design/style.css', 0777);
 			chmod('users/' . $dir. '/4.JPG', 0777);
 			
-			echo "<a href='users/$dir'>$dir</a>";
+			echo "<a class='btn' href='users/$dir/seadmed.php'>$dir</a>";
 }
 			
 		}
