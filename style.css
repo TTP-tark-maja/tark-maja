@@ -178,6 +178,11 @@ input[type=button] {
     transition-duration: 0.4s;
 }
 
+input[type=button]:hover {
+    background-color: rgb(214, 227, 245);
+    color: black;
+}
+
 input[type=submit] {
     text-align: center;
     text-transform: uppercase;
@@ -189,11 +194,6 @@ input[type=submit] {
     background-color: #0b89f0;
     border-radius: 4px; 
     transition-duration: 0.4s;
-}
-
-input[type=button]:hover {
-    background-color: rgb(214, 227, 245);
-    color: black;
 }
 
 input[type=number] {
