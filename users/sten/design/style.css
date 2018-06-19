@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: #0b89f02a;
+    background-color: #e7eff8;
     text-align: center;
 }
 
@@ -29,7 +29,7 @@ ul li a {
 }
 
 ul li a:hover {
-    color: #0b89f0;
+    color: rgb(11, 137, 240);
 }
 
 .banner {
@@ -40,6 +40,7 @@ ul li a:hover {
 .banner img {
     width: 100%;
     display: block;
+    filter: grayscale(90%);
 }
 
 nav {
@@ -52,7 +53,7 @@ nav {
 }
 
 hr{
-    border-color: #0b89f0;
+    border-color: rgb(11, 137, 240);
 }
 
 .container {
@@ -134,7 +135,7 @@ legend {
 }
 
 .radiobtn input:checked ~ .checkmark {
-    background-color:#0b89f0;
+    background-color:rgb(11, 137, 240);
 }
 
 .checkmark:after {
@@ -156,24 +157,14 @@ legend {
    background: white;
 }
 
-.delete input[type=button] {
-    background-color: red;
-}
-
-.delete input[type=button]:hover {
-    background-color: rgb(180, 4, 19);
-    color: white;
-}
-
 input[type=button] {
     text-align: center;
-    text-transform: uppercase;
     font-size: 10px;
     letter-spacing: 2px;
     border: none;
     padding: 10px 50px;
     color: white;
-    background-color: #0b89f0;
+    background-color: rgb(11, 137, 240);
     border-radius: 4px; 
     transition-duration: 0.4s;
 }
@@ -182,25 +173,6 @@ input[type=button]:hover {
     background-color: rgb(214, 227, 245);
     color: black;
 }
-
-input[type=submit] {
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 2px;
-    border: none;
-    padding: 10px 50px;
-    color: white;
-    background-color: #0b89f0;
-    border-radius: 4px; 
-    transition-duration: 0.4s;
-}
-
-input[type=submit]:hover {
-    background-color: rgb(214, 227, 245);
-    color: black;
-}
-
 
 input[type=number] {
     padding: 5px 20px;
@@ -233,7 +205,7 @@ input[type=radio] {
     font-family: "Verdana";
 }
 
-/*koduleht.php css*/
+/*seadmed.html css*/
 .main-grid {
     display: inline-grid;
     margin: 30px;
@@ -271,70 +243,23 @@ input[type=radio] {
     grid-row: row 2;
 }
 
-
-a.btn {
-    padding: 6px;
+.seade {
+    margin: 26px;
+    padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color:white;
+}
+
+.seade a {
     display: block;
     text-decoration: none;
-    text-transform: uppercase;
-    font-size: 10px;
+    font-size: 11px;
     font-family: "Verdana";
     color: black;
+    padding: 0px 20px;
 }
 
-a.btn:hover {
-    color: #0b89f0;
+.seade a:hover {
+    color: rgb(11, 137, 240);
 }
-
-/*seadme sisse-välja nupp*/
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 26px;
-  }
-  
-  .switch input {display:none;}
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 34px;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 7px;
-    bottom: 3px;
-    border-radius: 50%;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #0b89f0;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #0b89f0;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(28px);
-  }
