@@ -9,6 +9,7 @@
     <nav>
         <ul>
             <li><a href="koduleht.php">Home</a></li>
+			<li><a href="https://elektrihind.ee/paketid">Lisainfo elektripakettide kohta</a></li>
         </ul>
     </nav>
 
