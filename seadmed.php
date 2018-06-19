@@ -3,16 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>Tark Maja</title>
+    <link rel="icon" type="image/png" href="M.png">
     <link rel="stylesheet" type="text/css" href="design/style.css">
 </head>
-<body>
+<body class="page_bg">
     <nav>
         <ul>
-            <li><a href="../../koduleht.php">Avaleht</a></li>
-            <li><a href="../../paketiinfo.php">Paketi informatsioon</a></li>
+            <li><a href="koduleht.php">Avaleht</a></li>
+            <li><a href="paketiinfo.html">Paketi informatsioon</a></li>
         </ul>
     </nav>
-    
+
     <div class="banner">
         <img class="banner-image" src="4.JPG">
      </div><hr>
@@ -22,13 +23,17 @@
 
     <div class="container">
             <div class="button">
-                <a href="tingimused.php"><input type="button" value="Seadme tingimused"></a>
+                <input type="button" value="Seadme tingimused">
             </div>
         <h2>seadme olek</h2>
-            <label class="switch">
-                <input type="checkbox">
+		<form method="POST">
+            <div class="button">
+				<input type="submit" value= "Lülita sisse" name="test1" ><br>
+				<input type="submit" value= "Lülita välja" name = "test">
+
                 <span class="slider"></span>
-            </label><br>
+            </div><br>
+		</form>
             <h2>seadme logi</h2>
                     <?php
                     $lines = file('logfile.txt');
@@ -42,15 +47,23 @@
                                 echo ('<ul>' . $line . '</ul>');
                             }
                     }
+					if (isset($_POST['test1'])){
+
+					}
+					if (isset($_POST['test'])){
+						
+					}
+					
+					
                 ?> 
         <form method="POST">
 		   <div class="submit">
-			   <br>
-				<input type="submit" value="kuva kogu logi" name="kogulogi" id="1"><br>
-			   </div> 
-			   <div class="delete">
-			   <br><br>
-				<input type="submit" value="kustuta" name="kustuta" ><br>
+           <br>
+            <input type="submit" value="kuva kogu logi" name="kogulogi" id="1"><br>
+           </div> 
+           <div class="delete">
+           <br><br>
+            <input type="button" value="kustuta" name="kustuta" ><br>
            </div> 
         </form>
     
