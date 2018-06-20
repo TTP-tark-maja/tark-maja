@@ -8,8 +8,8 @@
 <body>
     <nav>
         <ul>
-            <li><a href="koduleht.php">Home</a></li>
-			<li><a href="https://elektrihind.ee/paketid">Lisainfo elektripakettide kohta</a></li>
+            <li><a href="koduleht.php">Avaleht</a></li>
+			<li><a href="https://elektrihind.ee/paketid">Elektripakettide lisainfo</a></li>
         </ul>
     </nav>
 
