@@ -27,7 +27,7 @@ if(isset($_GET["submit"])){
 		fwrite($myFile, $txt3);
 		fwrite($myFile, $txt4);
 	
-		header("Location: paketiinfo.html");
+		header("Location: paketiinfo.php");
 		
 	} else {
 		
@@ -42,7 +42,7 @@ if(isset($_GET["submit"])){
 		fwrite($myFile, $txt3);
 		fwrite($myFile, $txt4);
 	
-		header("Location: paketiinfo.html");
+		header("Location: paketiinfo.php");
 	}
 }
 ?>
