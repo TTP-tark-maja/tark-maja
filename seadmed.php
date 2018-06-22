@@ -48,9 +48,14 @@
                             }
                     }
 					if (isset($_POST['test1'])){
-
+						$dir = basename(dirname(__FILE__));
+						shell_exec("sh /home/pi/Desktop/tark-maja/relee_sisselylitus.sh");
+						shell_exec("python3.5 /home/pi/Desktop/tark-maja/users/$dir/manual_logwrite.py");
 					}
 					if (isset($_POST['test'])){
+						$dir = basename(dirname(__FILE__));
+						shell_exec("sh /home/pi/Desktop/tark-maja/relee_sisselylitus.sh");
+						shell_exec("python3.5 /home/pi/Desktop/tark-maja/users/$dir/manual_logwrite.py");
 						
 					}
 					
